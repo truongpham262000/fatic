@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="vi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Công Ty Cổ Phần Dịch Vụ Kỹ Thuật và Thương Mại FATIC</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { primary: '#0f2c59', secondary: '#d1a662', accent: '#f8f9fa', dark: '#1a1a1a' },
+                    fontFamily: { sans: ['Montserrat', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    animation: { 'fade-in-up': 'fadeInUp 0.8s ease-out forwards' },
+                    keyframes: { fadeInUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        .hero-bg { background-image: linear-gradient(rgba(15, 44, 89, 0.85), rgba(15, 44, 89, 0.7)), url('images/hero_bg.png'); background-size: cover; background-position: center; background-attachment: fixed; }
+        .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        #mobile-menu { transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out; max-height: 0; opacity: 0; overflow: hidden; }
+        #mobile-menu.open { max-height: 600px; opacity: 1; }
+        .section-view { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
+        .section-view.active { display: block; opacity: 1; }
+        .tab-content.active { display: block; animation: activeTab 0.5s ease-in-out; }
+        @keyframes activeTab { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="font-sans text-gray-800 antialiased bg-gray-50 flex flex-col min-h-screen">
+
+    <!-- Navbar Wrapper (TopBar + Nav) -->
+    <div id="navbar-wrapper" class="fixed w-full z-50">
+        <!-- Top Bar (Injected via JS) -->
+        <nav class="glass-nav transition-all duration-300" id="navbar">
+            <div class="container mx-auto px-6 py-4 flex justify-between items-center transition-all duration-300">
+                <a href="#" onclick="switchPage('home'); return false;" class="logo-container group logo-shiny">
+                    <img src="images/logo_new.png" alt="FATIC Logo" class="h-16 w-auto transition-transform group-hover:scale-105">
+                    <div class="hidden md:block">
+                        <span class="block text-xl font-bold text-primary tracking-tight">FATIC</span>
+                        <span class="block text-[10px] text-secondary font-medium tracking-widest uppercase">Solution & Development</span>
+                    </div>
+                </a>
+                <div class="hidden lg:flex items-center space-x-8 text-sm font-semibold">
+                    <!-- JS Populated Nav Links -->
+                </div>
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-700 focus:outline-none hover:text-primary p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+            <div id="mobile-menu" class="lg:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100">
+                <div class="flex flex-col px-6 py-4 space-y-4">
+                     <!-- JS Populated -->
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Main Content Application Container -->
+    <main id="app-container" class="flex-grow pt-[130px]"> <!-- Padding top ensures nav doesn't cover content -->
+        
+        <!-- SECTION: HOME -->
+        <div id="section-home" class="section-view active">
+            <!-- Hero Section -->
+            <header class="hero-bg min-h-screen flex items-center relative overflow-hidden -mt-[130px] pt-[130px]">
+                <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/80 to-transparent z-0"></div>
+                <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center">
+                    <div class="md:w-2/3 lg:w-1/2 text-white animate-fade-in-up">
+                        <div class="inline-block px-4 py-1 mb-4 border border-secondary/50 rounded-full bg-primary/30 backdrop-blur-sm">
+                            <span class="text-secondary text-sm font-semibold tracking-wider uppercase">Chuyên Nghiệp - Tận Tâm - Hiệu Quả</span>
+                        </div>
+                        <h1 class="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight mb-6 font-serif">
+                            Quản Lý Vận Hành <br>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-yellow-200">Đẳng Cấp Quốc Tế</span>
+                        </h1>
+                        <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-lg leading-relaxed font-light">
+                            FATIC tiên phong ứng dụng công nghệ và tiêu chuẩn quốc tế, mang lại giá trị bền vững cho khách hàng và cộng đồng.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="switchPage('services')" class="px-8 py-4 bg-secondary text-white font-bold rounded-full hover:bg-white hover:text-primary transition-all shadow-lg flex items-center justify-center gap-2 group">
+                                Khám Phá Dịch Vụ <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                            </button>
+                            <button onclick="switchPage('contact')" class="px-8 py-4 border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-primary transition-all flex items-center justify-center text-center">
+                                Liên Hệ Tư Vấn
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Brief Intro & Widgets -->
+            <section class="py-20 bg-white">
+                <div class="container mx-auto px-6">
+                    <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                        <div>
+                            <h4 class="text-secondary font-bold uppercase tracking-widest text-sm mb-2">Về Chúng Tôi</h4>
+                            <h2 class="text-4xl font-bold text-primary mb-6 font-serif">Kiến Tạo Giá Trị Bền Vững</h2>
+                            <p class="text-gray-600 mb-6 leading-relaxed">
+                                FATIC tự hào là đơn vị hàng đầu trong lĩnh vực quản lý vận hành tòa nhà và bảo trì kỹ thuật công nghiệp. Chúng tôi cam kết mang đến sự hài lòng tuyệt đối thông qua quy trình chuyên nghiệp và đội ngũ nhân sự tận tâm.
+                            </p>
+                            <button onclick="switchPage('about')" class="text-primary font-bold hover:text-secondary uppercase text-sm tracking-wider">Xem Thêm Về FATIC <i class="fas fa-arrow-right ml-1"></i></button>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                             <div class="bg-gray-50 p-6 rounded-2xl text-center hover:shadow-md transition-shadow">
+                                <i class="fas fa-building text-3xl text-secondary mb-3"></i>
+                                <h3 class="font-bold text-primary">Quản Lý Tòa Nhà</h3>
+                            </div>
+                            <div class="bg-gray-50 p-6 rounded-2xl text-center hover:shadow-md transition-shadow">
+                                <i class="fas fa-cogs text-3xl text-blue-600 mb-3"></i>
+                                <h3 class="font-bold text-primary">Bảo Trì Kỹ Thuật</h3>
+                            </div>
+                            <div class="bg-gray-50 p-6 rounded-2xl text-center hover:shadow-md transition-shadow">
+                                <i class="fas fa-chart-line text-3xl text-green-600 mb-3"></i>
+                                <h3 class="font-bold text-primary">Tư Vấn Giải Pháp</h3>
+                            </div>
+                             <div class="bg-gray-50 p-6 rounded-2xl text-center hover:shadow-md transition-shadow">
+                                <i class="fas fa-users text-3xl text-purple-600 mb-3"></i>
+                                <h3 class="font-bold text-primary">Đội Ngũ Chuyên Gia</h3>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Dynamic Widgets -->
+                    <div class="mb-20">
+                         <div class="flex justify-between items-end mb-8">
+                            <h2 class="text-3xl font-bold text-primary font-serif">Dịch Vụ Nổi Bật</h2>
+                            <button onclick="switchPage('services')" class="text-secondary font-bold text-sm uppercase">Xem Tất Cả</button>
+                        </div>
+                        <div id="home-services" class="grid md:grid-cols-3 gap-8"></div>
+                    </div>
+
+                    <div class="mb-20">
+                         <div class="flex justify-between items-end mb-8">
+                            <h2 class="text-3xl font-bold text-primary font-serif">Dự Án Tiêu Biểu</h2>
+                            <button onclick="switchPage('projects')" class="text-secondary font-bold text-sm uppercase">Xem Tất Cả</button>
+                        </div>
+                        <div id="home-projects" class="grid md:grid-cols-2 gap-8"></div>
+                    </div>
+
+                    <!-- News Widget -->
+                    <div class="mb-20">
+                         <div class="flex justify-between items-end mb-8">
+                            <h2 class="text-3xl font-bold text-primary font-serif">Tin Tức & Sự Kiện</h2>
+                            <button onclick="switchPage('news')" class="text-secondary font-bold text-sm uppercase">Xem Tất Cả</button>
+                        </div>
+                        <div id="home-news" class="grid md:grid-cols-3 gap-8"></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+        <!-- SECTION: ABOUT -->
+        <div id="section-about" class="section-view">
+             <!-- Header -->
+             <header class="pt-32 pb-20 bg-primary text-white text-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-[url('images/hero_bg.png')] opacity-20 bg-cover bg-center"></div>
+                <div class="relative z-10 reveal active">
+                    <h1 class="text-5xl font-bold font-serif mb-4 leading-tight">Về FATIC</h1>
+                    <p class="text-xl text-gray-300 max-w-2xl mx-auto font-light">Kiến Tạo Giá Trị Bền Vững - Nâng Tầm Chuẩn Mực Sống</p>
+                </div>
+            </header>
+
+            <!-- 1. Intro & Achievements (Compact) -->
+            <section class="py-16 bg-white border-b border-gray-100">
+                <div class="container mx-auto px-6">
+                    <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                        <div class="space-y-6 reveal active">
+                            <h4 class="text-secondary font-bold uppercase tracking-widest text-sm">Tổng Quan Doanh Nghiệp</h4>
+                            <h2 class="text-4xl font-bold text-primary font-serif leading-tight">Hành Trình 10 Năm <br>Vững Nền Tảng - Sáng Tương Lai</h2>
+                            <p class="text-gray-600 leading-relaxed text-justify">
+                                Được thành lập từ năm 2016, FATIC tự hào là đơn vị tiên phong áp dụng công nghệ số vào quản lý vận hành Bất động sản tại Việt Nam. Với đội ngũ hơn 500 nhân sự chất lượng cao, chúng tôi không chỉ cung cấp dịch vụ quản lý, mà còn là đối tác chiến lược giúp chủ đầu tư tối ưu hóa chi phí vận hành và gia tăng giá trị tài sản bền vững theo thời gian.
+                            </p>
+                            <div class="flex gap-4">
+                                <button onclick="window.scrollTo({top: document.getElementById('history-section').offsetTop - 100, behavior: 'smooth'})" class="px-6 py-3 bg-primary text-white font-bold rounded-lg hover:bg-secondary transition-colors shadow-lg">Lịch Sử Phát Triển</button>
+                                <button onclick="window.scrollTo({top: document.getElementById('leaders-section').offsetTop - 100, behavior: 'smooth'})" class="px-6 py-3 bg-white text-primary border border-primary font-bold rounded-lg hover:bg-gray-50 transition-colors">Ban Lãnh Đạo</button>
+                            </div>
+                        </div>
+                        <!-- Achievements Grid -->
+                        <div class="grid grid-cols-2 gap-6 reveal active">
+                            <div class="bg-gray-50 p-6 rounded-2xl text-center border-b-4 border-secondary shadow-sm hover:shadow-md transition-all group">
+                                <div class="text-4xl font-bold text-primary mb-2 group-hover:text-secondary transition-colors">10+</div>
+                                <div class="text-xs font-bold text-gray-500 uppercase">Năm Kinh Nghiệm</div>
+                            </div>
+                            <div class="bg-gray-50 p-6 rounded-2xl text-center border-b-4 border-secondary shadow-sm hover:shadow-md transition-all group">
+                                <div class="text-4xl font-bold text-primary mb-2 group-hover:text-secondary transition-colors">50+</div>
+                                <div class="text-xs font-bold text-gray-500 uppercase">Dự Án Quy Mô Lớn</div>
+                            </div>
+                            <div class="bg-gray-50 p-6 rounded-2xl text-center border-b-4 border-secondary shadow-sm hover:shadow-md transition-all group">
+                                <div class="text-4xl font-bold text-primary mb-2 group-hover:text-secondary transition-colors">500+</div>
+                                <div class="text-xs font-bold text-gray-500 uppercase">Nhân Sự Chuyên Môn</div>
+                            </div>
+                            <div class="bg-gray-50 p-6 rounded-2xl text-center border-b-4 border-secondary shadow-sm hover:shadow-md transition-all group">
+                                <div class="text-4xl font-bold text-primary mb-2 group-hover:text-secondary transition-colors">98%</div>
+                                <div class="text-xs font-bold text-gray-500 uppercase">Khách Hàng Hài Lòng</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+             <!-- 2. Interactive History -->
+             <section id="history-section" class="py-20 bg-gray-50">
+                 <div class="container mx-auto px-6">
+                    <div class="text-center mb-12">
+                        <span class="text-secondary font-bold tracking-widest uppercase">Chặng Đường Phát Triển</span>
+                        <h2 class="text-3xl font-bold text-primary font-serif mt-2">Dấu Ấn Thời Gian</h2>
+                    </div>
+                    
+                    <div class="flex flex-col md:flex-row gap-8 items-start max-w-5xl mx-auto">
+                        <!-- Timeline Buttons -->
+                        <div class="flex md:flex-col gap-4 overflow-x-auto md:overflow-visible w-full md:w-1/4 pb-4 md:pb-0">
+                            <button onclick="switchHistory('2016')" class="history-btn px-6 py-4 rounded-xl text-left font-bold transition-all duration-300 bg-secondary text-white shadow-lg scale-105" data-year="2016">
+                                <span class="block text-2xl">2016</span>
+                                <span class="text-xs opacity-80 uppercase">Khởi Tạo</span>
+                            </button>
+                            <button onclick="switchHistory('2018')" class="history-btn px-6 py-4 rounded-xl text-left font-bold transition-all duration-300 bg-gray-100 text-gray-500 hover:bg-gray-200" data-year="2018">
+                                <span class="block text-2xl">2018</span>
+                                <span class="text-xs opacity-80 uppercase">Mở Rộng</span>
+                            </button>
+                            <button onclick="switchHistory('2020')" class="history-btn px-6 py-4 rounded-xl text-left font-bold transition-all duration-300 bg-gray-100 text-gray-500 hover:bg-gray-200" data-year="2020">
+                                <span class="block text-2xl">2020</span>
+                                <span class="text-xs opacity-80 uppercase">Chuyển Đổi Số</span>
+                            </button>
+                            <button onclick="switchHistory('2023')" class="history-btn px-6 py-4 rounded-xl text-left font-bold transition-all duration-300 bg-gray-100 text-gray-500 hover:bg-gray-200" data-year="2023">
+                                <span class="block text-2xl">2023</span>
+                                <span class="text-xs opacity-80 uppercase">Khẳng Định</span>
+                            </button>
+                            <button onclick="switchHistory('2026')" class="history-btn px-6 py-4 rounded-xl text-left font-bold transition-all duration-300 bg-gray-100 text-gray-500 hover:bg-gray-200" data-year="2026">
+                                <span class="block text-2xl">2026</span>
+                                <span class="text-xs opacity-80 uppercase">Tương Lai</span>
+                            </button>
+                        </div>
+                        
+                        <!-- Content Area -->
+                        <div class="w-full md:w-3/4 bg-white p-8 md:p-12 rounded-2xl shadow-xl min-h-[300px] relative overflow-hidden">
+                            <!-- 2016 Content -->
+                            <div id="history-2016" class="history-content transition-all duration-500">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <div class="h-16 w-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-2xl"><i class="fas fa-flag-checkered"></i></div>
+                                    <div>
+                                        <h3 class="text-3xl font-bold text-primary">Năm 2016: Đặt Nền Móng</h3>
+                                        <p class="text-secondary font-bold">"Khởi đầu với khát vọng lớn"</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 leading-relaxed mb-6">Thành lập Công ty Cổ phần FATIC với vốn điều lệ ban đầu 20 tỷ đồng. Tập trung vào mảng dịch vụ kỹ thuật M&E và bảo trì hệ thống cho các tòa nhà văn phòng quy mô nhỏ tại Hà Nội.</p>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-gray-50 p-3 rounded lg:text-center text-sm font-bold text-gray-500"><i class="fas fa-users mr-2 text-secondary"></i> 20 Nhân sự đầu tiên</div>
+                                    <div class="bg-gray-50 p-3 rounded lg:text-center text-sm font-bold text-gray-500"><i class="fas fa-building mr-2 text-secondary"></i> 5 Dự án đầu tay</div>
+                                </div>
+                            </div>
+                            <!-- 2018 Content -->
+                            <div id="history-2018" class="history-content hidden opacity-0 translate-y-4 transition-all duration-500">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <div class="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center text-green-600 text-2xl"><i class="fas fa-chart-line"></i></div>
+                                    <div>
+                                        <h3 class="text-3xl font-bold text-primary">Năm 2018: Vươn Mình Mạnh Mẽ</h3>
+                                        <p class="text-secondary font-bold">"Mở rộng thị phần & dịch vụ"</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 leading-relaxed mb-6">Chính thức mở rộng sang lĩnh vực Quản lý Vận hành trọn gói cho chung cư cao cấp. Khai trương chi nhánh TP.HCM, đánh dấu sự hiện diện tại hai đầu đất nước.</p>
+                                <div class="grid grid-cols-2 gap-4">
+                                     <div class="bg-gray-50 p-3 rounded lg:text-center text-sm font-bold text-gray-500"><i class="fas fa-map-marked-alt mr-2 text-secondary"></i> Mở VP TP.HCM</div>
+                                    <div class="bg-gray-50 p-3 rounded lg:text-center text-sm font-bold text-gray-500"><i class="fas fa-handshake mr-2 text-secondary"></i> Đối tác của VinHomes</div>
+                                </div>
+                            </div>
+                            <!-- 2020 Content -->
+                            <div id="history-2020" class="history-content hidden opacity-0 translate-y-4 transition-all duration-500">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <div class="h-16 w-16 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 text-2xl"><i class="fas fa-mobile-alt"></i></div>
+                                    <div>
+                                        <h3 class="text-3xl font-bold text-primary">Năm 2020: Chuyển Đổi Số</h3>
+                                        <p class="text-secondary font-bold">"Công nghệ hóa quy trình"</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 leading-relaxed mb-6">Ra mắt ứng dụng <span class="font-bold text-primary">FATIC Connect</span> - giải pháp tương tác cư dân thông minh. Áp dụng hệ thống ERP vào quản trị doanh nghiệp toàn diện.</p>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-gray-50 p-3 rounded lg:text-center text-sm font-bold text-gray-500"><i class="fas fa-download mr-2 text-secondary"></i> 10,000+ App Users</div>
+                                    <div class="bg-gray-50 p-3 rounded lg:text-center text-sm font-bold text-gray-500"><i class="fas fa-laptop-code mr-2 text-secondary"></i> 100% Số hóa quy trình</div>
+                                </div>
+                            </div>
+                            <!-- 2023 Content -->
+                            <div id="history-2023" class="history-content hidden opacity-0 translate-y-4 transition-all duration-500">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <div class="h-16 w-16 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-600 text-2xl"><i class="fas fa-medal"></i></div>
+                                    <div>
+                                        <h3 class="text-3xl font-bold text-primary">Năm 2023: Khẳng Định Vị Thế</h3>
+                                        <p class="text-secondary font-bold">"Chất lượng chuẩn quốc tế (ISO)"</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 leading-relaxed mb-6">Đạt chứng nhận ISO 9001:2015 và ISO 45001. Top 10 Thương hiệu Quản lý Vận hành xuất sắc nhất Việt Nam. Mở rộng dịch vụ sang quản lý KCN.</p>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-gray-50 p-3 rounded lg:text-center text-sm font-bold text-gray-500"><i class="fas fa-certificate mr-2 text-secondary"></i> Đạt chuẩn ISO</div>
+                                    <div class="bg-gray-50 p-3 rounded lg:text-center text-sm font-bold text-gray-500"><i class="fas fa-trophy mr-2 text-secondary"></i> Top 10 Award</div>
+                                </div>
+                            </div>
+                            <!-- 2026 Content -->
+                            <div id="history-2026" class="history-content hidden opacity-0 translate-y-4 transition-all duration-500">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <div class="h-16 w-16 bg-red-100 rounded-full flex items-center justify-center text-red-600 text-2xl"><i class="fas fa-rocket"></i></div>
+                                    <div>
+                                        <h3 class="text-3xl font-bold text-primary">Năm 2026: Tầm Nhìn Công Nghệ</h3>
+                                        <p class="text-secondary font-bold">"Smart City & Green Energy"</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-600 leading-relaxed mb-6">Hướng tới mô hình quản lý Đô thị Thông minh (Smart City) và tích hợp các giải pháp Năng lượng Xanh. Mục tiêu quản lý 10 triệu m2 sàn và niêm yết trên sàn chứng khoán.</p>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-gray-50 p-3 rounded lg:text-center text-sm font-bold text-gray-500"><i class="fas fa-leaf mr-2 text-secondary"></i> Green Energy</div>
+                                    <div class="bg-gray-50 p-3 rounded lg:text-center text-sm font-bold text-gray-500"><i class="fas fa-chart-line mr-2 text-secondary"></i> IPO Goal</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                 </div>
+             </section>
+
+             <!-- 3. Vision / Mission / Values (Grid) -->
+             <section class="py-20 bg-primary text-white relative overflow-hidden">
+                 <div class="absolute top-0 right-0 p-20 opacity-5"><i class="fas fa-globe text-9xl"></i></div>
+                 <div class="container mx-auto px-6 relative z-10">
+                     <div class="grid md:grid-cols-3 gap-10">
+                         <!-- Vision -->
+                         <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm hover:bg-white/20 transition-colors border border-white/10">
+                             <div class="w-16 h-16 bg-secondary rounded-xl flex items-center justify-center text-3xl mb-6 shadow-lg"><i class="fas fa-eye"></i></div>
+                             <h3 class="text-2xl font-bold mb-4">Tầm Nhìn</h3>
+                             <p class="text-gray-200 text-justify leading-relaxed text-sm">Trở thành đơn vị hàng đầu trong lĩnh vực quản lý vận hành tòa nhà và bảo trì tại VN, tiên phong ứng dụng công nghệ để kiến tạo giá trị bền vững.</p>
+                         </div>
+                         <!-- Mission -->
+                         <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm hover:bg-white/20 transition-colors border border-white/10">
+                             <div class="w-16 h-16 bg-blue-500 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-lg"><i class="fas fa-bullseye"></i></div>
+                             <h3 class="text-2xl font-bold mb-4">Sứ Mệnh</h3>
+                             <ul class="text-gray-200 text-sm space-y-3">
+                                 <li class="flex gap-2"><i class="fas fa-check text-secondary mt-1"></i> Dịch vụ chuyên nghiệp, minh bạch.</li>
+                                 <li class="flex gap-2"><i class="fas fa-check text-secondary mt-1"></i> Tối ưu chi phí, an toàn kỹ thuật.</li>
+                                 <li class="flex gap-2"><i class="fas fa-check text-secondary mt-1"></i> Kiến tạo môi trường sống nhân văn.</li>
+                             </ul>
+                         </div>
+                          <!-- Core Values -->
+                         <div class="bg-white/10 p-8 rounded-2xl backdrop-blur-sm hover:bg-white/20 transition-colors border border-white/10">
+                             <div class="w-16 h-16 bg-green-500 rounded-xl flex items-center justify-center text-3xl mb-6 shadow-lg"><i class="fas fa-heart"></i></div>
+                             <h3 class="text-2xl font-bold mb-4">Giá Trị Cốt Lõi</h3>
+                             <div class="grid grid-cols-2 gap-y-3 gap-x-2 text-gray-200 text-sm font-bold">
+                                 <div><i class="fas fa-star text-secondary mr-2"></i>Chuyên Nghiệp</div>
+                                 <div><i class="fas fa-star text-secondary mr-2"></i>Trách Nhiệm</div>
+                                 <div><i class="fas fa-star text-secondary mr-2"></i>Tận Tâm</div>
+                                 <div><i class="fas fa-star text-secondary mr-2"></i>Sáng Tạo</div>
+                                 <div><i class="fas fa-star text-secondary mr-2"></i>Minh Bạch</div>
+                                 <div><i class="fas fa-star text-secondary mr-2"></i>Hiệu Quả</div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </section>
+
+             <!-- 4. Leaders & Org Chart -->
+             <section id="leaders-section" class="py-20 bg-white">
+                 <div class="container mx-auto px-6">
+                     <div class="text-center mb-16">
+                         <span class="text-secondary font-bold tracking-widest uppercase">Bộ Máy Tổ Chức</span>
+                         <h2 class="text-3xl font-bold text-primary font-serif mt-2">Ban Lãnh Đạo Cấp Cao</h2>
+                     </div>
+                    <!-- Leaders Grid -->
+                    <div class="grid md:grid-cols-3 gap-8 mb-16">
+                            <!-- Leader 1 -->
+                            <div class="group relative overflow-hidden rounded-2xl shadow-lg h-[450px]">
+                                <img src="images/leader1.png" onerror="this.src='https://ui-avatars.com/api/?name=Nguyen+Van+A&background=0D8ABC&color=fff&size=512'" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="CEO">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/95 to-transparent p-6 pt-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <h4 class="text-white font-bold text-2xl">Ông Nguyễn Văn An</h4>
+                                    <p class="text-secondary font-bold uppercase tracking-wider text-sm mb-2">Tổng Giám Đốc</p>
+                                    <p class="text-gray-300 text-xs opacity-0 group-hover:opacity-100 transition-opacity delay-100">"Lãnh đạo bằng tâm, vươn tầm bằng trí"</p>
+                                </div>
+                            </div>
+                            <!-- Leader 2 -->
+                            <div class="group relative overflow-hidden rounded-2xl shadow-lg h-[450px]">
+                                <img src="images/leader2.png" onerror="this.src='https://ui-avatars.com/api/?name=Tran+Thi+B&background=d1a662&color=fff&size=512'" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Deputy CEO">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/95 to-transparent p-6 pt-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <h4 class="text-white font-bold text-2xl">Bà Trần Thị Bình</h4>
+                                    <p class="text-secondary font-bold uppercase tracking-wider text-sm mb-2">Phó Tổng Giám Đốc</p>
+                                    <p class="text-gray-300 text-xs opacity-0 group-hover:opacity-100 transition-opacity delay-100">"Quản trị tinh hoa, tối ưu hiệu quả"</p>
+                                </div>
+                            </div>
+                            <!-- Leader 3 -->
+                            <div class="group relative overflow-hidden rounded-2xl shadow-lg h-[450px]">
+                                <img src="images/leader3.png" onerror="this.src='https://ui-avatars.com/api/?name=Le+Van+C&background=1a1a1a&color=fff&size=512'" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Tech Director">
+                                <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/95 to-transparent p-6 pt-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                    <h4 class="text-white font-bold text-2xl">Ông Lê Văn Cường</h4>
+                                    <p class="text-secondary font-bold uppercase tracking-wider text-sm mb-2">Giám Đốc Kỹ Thuật</p>
+                                    <p class="text-gray-300 text-xs opacity-0 group-hover:opacity-100 transition-opacity delay-100">"Kỹ thuật chính xác, an toàn tuyệt đối"</p>
+                                </div>
+                            </div>
+                    </div>
+                    
+                    <!-- Org Chart -->
+                     <div class="bg-gray-50 rounded-3xl p-8 border border-gray-100">
+                        <h3 class="text-xl font-bold text-primary mb-6 text-center">Sơ Đồ Tổ Chức</h3>
+                        <div class="flex justify-center">
+                             <img src="images/org_chart.png" alt="Sơ đồ tổ chức FATIC" class="max-w-4xl w-full h-auto rounded-lg shadow-sm hover:shadow-lg transition-shadow bg-white p-2">
+                        </div>
+                     </div>
+                 </div>
+             </section>
+
+             <!-- 5. Strategic Partners (Compact Slider Style) -->
+             <section class="py-16 bg-gray-50 border-t border-gray-200">
+                 <div class="container mx-auto px-6 text-center">
+                     <h4 class="text-gray-400 font-bold uppercase tracking-widest mb-8 text-sm">Đối Tác Chiến Lược Của FATIC</h4>
+                     <div class="flex flex-wrap justify-center gap-8 md:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+                         <!-- Logos (using text for placeholder) -->
+                         <div class="text-2xl font-black text-gray-500 hover:text-primary transition-colors cursor-pointer">VINHOMES</div>
+                         <div class="text-2xl font-black text-gray-500 hover:text-primary transition-colors cursor-pointer">NOVALAND</div>
+                         <div class="text-2xl font-black text-gray-500 hover:text-primary transition-colors cursor-pointer">SUN GROUP</div>
+                         <div class="text-2xl font-black text-gray-500 hover:text-primary transition-colors cursor-pointer">BECAMEX IDC</div>
+                         <div class="text-2xl font-black text-gray-500 hover:text-primary transition-colors cursor-pointer">SAMSUNG</div>
+                     </div>
+                 </div>
+             </section>
+        </div>
+
+        <!-- SECTION: SERVICES -->
+        <div id="section-services" class="section-view">
+             <header class="pt-32 pb-16 bg-primary text-white text-center shadow-lg">
+                <div class="reveal active">
+                    <h1 class="text-4xl font-bold font-serif mb-2" id="service-header-title">Dịch Vụ Của Chúng Tôi</h1>
+                    <p class="text-gray-300" id="service-header-desc">Giải pháp toàn diện cho mọi nhu cầu quản lý vận hành</p>
+                </div>
+            </header>
+            <section class="py-20 container mx-auto px-6">
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap justify-center gap-4 mb-12" id="service-filters">
+                    <button onclick="filterServices('ALL')" class="px-6 py-2 rounded-full font-bold text-sm bg-secondary text-white shadow-lg transition-transform hover:scale-105 active-filter" data-filter="ALL">Tất Cả</button>
+                    <button onclick="filterServices('QLTN')" class="px-6 py-2 rounded-full font-bold text-sm bg-white text-gray-600 hover:bg-gray-100 transition-transform hover:scale-105" data-filter="QLTN">Quản Lý Tòa Nhà</button>
+                    <button onclick="filterServices('BTKT')" class="px-6 py-2 rounded-full font-bold text-sm bg-white text-gray-600 hover:bg-gray-100 transition-transform hover:scale-105" data-filter="BTKT">Bảo Trì Kỹ Thuật</button>
+                    <button onclick="filterServices('TV')" class="px-6 py-2 rounded-full font-bold text-sm bg-white text-gray-600 hover:bg-gray-100 transition-transform hover:scale-105" data-filter="TV">Tư Vấn</button>
+                    <button onclick="filterServices('CN')" class="px-6 py-2 rounded-full font-bold text-sm bg-white text-gray-600 hover:bg-gray-100 transition-transform hover:scale-105" data-filter="CN">Công Nghệ</button>
+                </div>
+                <div id="services-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            </section>
+        </div>
+
+        <!-- SECTION: PROJECTS -->
+        <div id="section-projects" class="section-view">
+            <header class="pt-32 pb-16 bg-primary text-white text-center shadow-lg">
+                <div class="reveal active">
+                    <h1 class="text-4xl font-bold font-serif mb-2" id="project-header-title">Dự Án Tiêu Biểu</h1>
+                    <p class="text-gray-300">Dấu ấn chất lượng trên mỗi công trình</p>
+                </div>
+            </header>
+            <section class="py-20 container mx-auto px-6">
+                 <div class="flex flex-wrap justify-center gap-4 mb-12">
+                     <button onclick="filterProjects('ALL')" class="px-6 py-2 rounded-full font-bold text-sm bg-secondary text-white shadow-lg transition-transform hover:scale-105 active-filter-proj" data-filter="ALL">Tất Cả</button>
+                     <button onclick="filterProjects('Apartment')" class="px-6 py-2 rounded-full font-bold text-sm bg-white text-gray-600 hover:bg-gray-100 transition-transform hover:scale-105" data-filter="Apartment">Chung Cư</button>
+                     <button onclick="filterProjects('Industrial')" class="px-6 py-2 rounded-full font-bold text-sm bg-white text-gray-600 hover:bg-gray-100 transition-transform hover:scale-105" data-filter="Industrial">Công Nghiệp</button>
+                     <button onclick="filterProjects('Office')" class="px-6 py-2 rounded-full font-bold text-sm bg-white text-gray-600 hover:bg-gray-100 transition-transform hover:scale-105" data-filter="Office">Văn Phòng</button>
+                 </div>
+                <div id="projects-list" class="grid md:grid-cols-2 gap-8"></div>
+            </section>
+        </div>
+
+        <!-- SECTION: NEWS -->
+        <div id="section-news" class="section-view">
+            <header class="pt-32 pb-16 bg-primary text-white text-center shadow-lg">
+                <div class="reveal active">
+                    <h1 class="text-4xl font-bold font-serif mb-2">Tin Tức & Sự Kiện</h1>
+                    <p class="text-gray-300">Cập nhật hoạt động mới nhất</p>
+                </div>
+            </header>
+            <section class="py-20 container mx-auto px-6">
+                <div id="news-list" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            </section>
+        </div>
+
+        <!-- SECTION: CONTACT -->
+        <div id="section-contact" class="section-view">
+            <header class="pt-32 pb-16 bg-primary text-white text-center">
+                <h1 class="text-4xl font-bold font-serif mb-2">Liên Hệ Hợp Tác</h1>
+                <p class="text-gray-300">Kết nối với chúng tôi để nhận tư vấn giải pháp tốt nhất</p>
+            </header>
+            <section class="py-20 container mx-auto px-6">
+                <div class="max-w-6xl mx-auto grid lg:grid-cols-5 gap-12">
+                    <!-- Contact Info -->
+                    <div class="lg:col-span-2 space-y-8">
+                         <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                             <h3 class="text-xl font-bold text-primary mb-6 border-l-4 border-secondary pl-4">Văn Phòng Hà Nội</h3>
+                             <div class="space-y-4 text-gray-600 text-sm">
+                                 <p><i class="fas fa-map-marker-alt w-6 text-secondary"></i> Số 88 Láng Hạ, Đống Đa, Hà Nội</p>
+                                 <p><i class="fas fa-phone w-6 text-secondary"></i> (+84) 24 3999 8888</p>
+                                 <p><i class="fas fa-envelope w-6 text-secondary"></i> hanoi@fatic.com.vn</p>
+                             </div>
+                         </div>
+                         <div class="bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                             <h3 class="text-xl font-bold text-primary mb-6 border-l-4 border-secondary pl-4">Văn Phòng TP.HCM</h3>
+                             <div class="space-y-4 text-gray-600 text-sm">
+                                 <p><i class="fas fa-map-marker-alt w-6 text-secondary"></i> Tầng 12, Bitexco Tower, Quận 1</p>
+                                 <p><i class="fas fa-phone w-6 text-secondary"></i> (+84) 28 3999 9999</p>
+                                 <p><i class="fas fa-envelope w-6 text-secondary"></i> hcm@fatic.com.vn</p>
+                             </div>
+                         </div>
+                    </div>
+
+                    <!-- Contact Form -->
+                    <div class="lg:col-span-3 bg-white rounded-3xl p-8 lg:p-10 shadow-xl border border-gray-100">
+                        <h3 class="text-2xl font-bold text-primary mb-6 text-center">Gửi Yêu Cầu Tư Vấn</h3>
+                        <form onsubmit="event.preventDefault(); alert('Cảm ơn Quý khách! FATIC sẽ liên hệ lại trong thời gian sớm nhất.'); switchPage('home');" class="space-y-4">
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div><label class="block text-xs font-bold text-gray-500 mb-1">Họ Tên *</label><input type="text" class="w-full px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 outline-none focus:border-secondary focus:ring-1 focus:ring-secondary transition-all" required placeholder="Nguyễn Văn A"></div>
+                                <div><label class="block text-xs font-bold text-gray-500 mb-1">Số Điện Thoại *</label><input type="tel" class="w-full px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 outline-none focus:border-secondary transition-all" required placeholder="0912 xxx xxx"></div>
+                            </div>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div><label class="block text-xs font-bold text-gray-500 mb-1">Email</label><input type="email" class="w-full px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 outline-none focus:border-secondary transition-all" placeholder="example@gmail.com"></div>
+                                <div><label class="block text-xs font-bold text-gray-500 mb-1">Tên Công Ty / Dự Án</label><input type="text" class="w-full px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 outline-none focus:border-secondary transition-all" placeholder="Công ty ABC..."></div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-gray-500 mb-1">Dịch Vụ Quan Tâm</label>
+                                <select class="w-full px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 outline-none focus:border-secondary transition-all text-gray-600">
+                                    <option>Quản lý vận hành chung cư/văn phòng</option>
+                                    <option>Bảo trì hệ thống kỹ thuật nhà máy</option>
+                                    <option>Tư vấn giải pháp công nghệ</option>
+                                    <option>Hợp tác/Đối tác</option>
+                                    <option>Khác</option>
+                                </select>
+                            </div>
+                            <div><label class="block text-xs font-bold text-gray-500 mb-1">Nội Dung Chi Tiết</label><textarea rows="4" class="w-full px-4 py-3 bg-gray-50 rounded-lg border border-gray-200 outline-none focus:border-secondary transition-all" placeholder="Mô tả nhu cầu của bạn..."></textarea></div>
+                            <button type="submit" class="w-full py-4 bg-secondary text-white font-bold rounded-lg hover:bg-primary transition-colors shadow-lg uppercase tracking-wider mt-4">Gửi Thông Tin Ngay</button>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+        
+        <!-- SECTION: DETAIL -->
+        <div id="section-detail" class="section-view">
+            <div class="bg-primary text-white pt-32 pb-16 shadow-lg">
+                <div class="container mx-auto px-6">
+                    <button onclick="window.history.back()" class="text-sm text-secondary mb-2 uppercase tracking-wide font-bold hover:underline" id="detail-back-btn"><i class="fas fa-arrow-left"></i> Quay Lại</button>
+                    <h1 class="text-3xl md:text-5xl font-bold font-serif leading-tight reveal active" id="detail-title">Tiêu Đề</h1>
+                </div>
+            </div>
+            <section class="py-16 container mx-auto px-6 max-w-5xl flex-grow min-h-[500px]">
+                <div id="detail-content"></div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer (Injected via JS) -->
+    <footer id="main-footer"></footer>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

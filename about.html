@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giới Thiệu - FATIC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { primary: '#0f2c59', secondary: '#d1a662' }, fontFamily: { sans: ['Montserrat', 'sans-serif'], serif: ['Playfair Display', 'serif'] } } } };
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+     <style>
+        .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        #mobile-menu { transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out; max-height: 0; opacity: 0; overflow: hidden; }
+        #mobile-menu.open { max-height: 500px; opacity: 1; }
+    </style>
+    <link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="font-sans text-gray-800 antialiased bg-gray-50 flex flex-col min-h-screen">
+    <nav class="glass-nav fixed w-full z-50" id="navbar">
+        <div class="container mx-auto px-6 py-3 flex justify-between items-center">
+             <a href="index.html" class="logo-container group logo-shiny">
+                <img src="images/logo_new.png" alt="FATIC" class="h-10 w-auto group-hover:scale-105 transition-transform">
+                <span class="hidden md:block text-xl font-bold text-primary">FATIC</span>
+            </a>
+            <div class="hidden lg:flex items-center space-x-8">
+                <a href="about.html" class="text-sm font-semibold text-primary uppercase tracking-wider">Giới Thiệu</a>
+                <a href="services.html" class="text-sm font-semibold text-gray-700 hover:text-primary uppercase tracking-wider">Dịch Vụ</a>
+                <a href="projects.html" class="text-sm font-semibold text-gray-700 hover:text-primary uppercase tracking-wider">Dự Án</a>
+                <a href="news.html" class="text-sm font-semibold text-gray-700 hover:text-primary uppercase tracking-wider">Tin Tức</a>
+                <a href="contact.html" class="px-6 py-2 bg-primary text-white font-bold rounded-full hover:bg-secondary text-sm">Liên Hệ</a>
+            </div>
+            <div class="lg:hidden"><button id="mobile-menu-btn" class="text-gray-700 p-2"><i class="fas fa-bars text-2xl"></i></button></div>
+        </div>
+        <div id="mobile-menu" class="lg:hidden absolute top-full left-0 w-full bg-white shadow-xl">
+             <div class="flex flex-col px-6 py-4 space-y-4">
+                <a href="index.html" class="text-gray-800 font-medium pb-2 border-b">Trang Chủ</a>
+                <a href="about.html" class="text-primary font-bold pb-2 border-b">Giới Thiệu</a>
+                <a href="services.html" class="text-gray-800 font-medium pb-2 border-b">Dịch Vụ</a>
+                <a href="projects.html" class="text-gray-800 font-medium pb-2 border-b">Dự Án</a>
+                <a href="news.html" class="text-gray-800 font-medium pb-2 border-b">Tin Tức</a>
+                <a href="contact.html" class="text-primary font-bold">Liên Hệ</a>
+            </div>
+        </div>
+    </nav>
+    <div id="page-wrapper">
+    <header class="pt-32 pb-16 bg-primary text-white text-center">
+        <h1 class="text-4xl font-bold font-serif mb-2">Về Chúng Tôi</h1>
+        <p class="text-gray-300">Hành trình kiến tạo giá trị bền vững</p>
+    </header>
+
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div class="bg-gray-50 p-8 rounded-2xl shadow-lg border-l-4 border-secondary hover:transform hover:scale-105 transition-transform duration-300">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-secondary text-3xl mb-6">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-primary mb-4 font-serif">Tầm Nhìn</h3>
+                    <p class="text-gray-600 leading-relaxed text-justify">
+                        Trở thành đơn vị hàng đầu trong lĩnh vực quản lý vận hành tòa nhà và bảo trì kỹ thuật công nghiệp tại Việt Nam, tiên phong ứng dụng công nghệ và tiêu chuẩn quốc tế để mang lại giá trị bền vững cho khách hàng và cộng đồng.
+                    </p>
+                </div>
+                <div class="bg-primary p-8 rounded-2xl shadow-lg border-r-4 border-secondary hover:transform hover:scale-105 transition-transform duration-300 text-white">
+                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-primary text-3xl mb-6">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4 font-serif">Sứ Mệnh</h3>
+                    <ul class="space-y-3 text-gray-200 text-sm">
+                        <li class="flex items-start gap-2"><i class="fas fa-check mt-1 text-secondary"></i> Cung cấp dịch vụ chuyên nghiệp, minh bạch, an toàn.</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check mt-1 text-secondary"></i> Bảo trì kỹ thuật bài bản, tối ưu chi phí.</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check mt-1 text-secondary"></i> Đổi mới và ứng dụng công nghệ quản lý.</li>
+                        <li class="flex items-start gap-2"><i class="fas fa-check mt-1 text-secondary"></i> Kiến tạo môi trường sống và sản xuất bền vững.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Core Values -->
+            <div class="bg-gray-50 rounded-3xl p-10 shadow-inner mb-20">
+                <h3 class="text-2xl font-bold text-center text-primary mb-10 font-serif">Giá Trị Cốt Lõi</h3>
+                <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                     <div class="flex gap-4">
+                        <div class="text-4xl text-secondary opacity-20 font-serif font-bold">01</div>
+                        <div><h4 class="text-lg font-bold text-primary mb-2">Trách Nhiệm</h4><p class="text-sm text-gray-600">Đặt lợi ích khách hàng và an toàn lên hàng đầu.</p></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="text-4xl text-secondary opacity-20 font-serif font-bold">02</div>
+                        <div><h4 class="text-lg font-bold text-primary mb-2">Chuyên Nghiệp</h4><p class="text-sm text-gray-600">Quy trình chuẩn, nhân sự có chứng chỉ nghề.</p></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="text-4xl text-secondary opacity-20 font-serif font-bold">03</div>
+                        <div><h4 class="text-lg font-bold text-primary mb-2">Minh Bạch</h4><p class="text-sm text-gray-600">Quản lý rõ ràng, báo cáo tài chính công khai.</p></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="text-4xl text-secondary opacity-20 font-serif font-bold">04</div>
+                        <div><h4 class="text-lg font-bold text-primary mb-2">Hiệu Quả</h4><p class="text-sm text-gray-600">Tối ưu chi phí vận hành, bảo trì cho khách hàng.</p></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="text-4xl text-secondary opacity-20 font-serif font-bold">05</div>
+                        <div><h4 class="text-lg font-bold text-primary mb-2">Cải Tiến</h4><p class="text-sm text-gray-600">Luôn đổi mới và ứng dụng công nghệ hiện đại.</p></div>
+                    </div>
+                    <div class="flex gap-4">
+                        <div class="text-4xl text-secondary opacity-20 font-serif font-bold">06</div>
+                        <div><h4 class="text-lg font-bold text-primary mb-2">Hợp Tác</h4><p class="text-sm text-gray-600">Xây dựng quan hệ bền vững, tin cậy.</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Organization Chart -->
+             <div class="flex flex-col lg:flex-row gap-16 items-center">
+                <div class="lg:w-1/2">
+                    <h4 class="text-secondary font-bold uppercase tracking-widest text-sm mb-2">Cơ Cấu Tổ Chức</h4>
+                    <h2 class="text-3xl font-bold text-primary mb-6 font-serif">Mô Hình Quản Lý Tinh Gọn</h2>
+                     <p class="text-gray-600 mb-6 leading-relaxed">
+                        FATIC xây dựng bộ máy tổ chức chuyên nghiệp, phân quyền rõ ràng để đảm bảo tính hiệu quả và phản ứng nhanh trong mọi tình huống.
+                    </p>
+                </div>
+                <div class="lg:w-1/2 bg-gray-50 p-6 rounded-2xl border border-gray-200 shadow-inner">
+                    <img src="images/org_chart.png" alt="Sơ đồ tổ chức FATIC" class="w-full h-auto rounded-lg shadow-md hover:scale-105 transition-transform duration-500 bg-white">
+                </div>
+            </div>
+        </div>
+    </section>
+    </div>
+
+    <footer class="bg-primary text-white pt-10 pb-6 mt-auto text-center text-sm text-gray-500">&copy; 2026 FATIC. All Rights Reserved.</footer>
+    <script src="js/data.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
