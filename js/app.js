@@ -3,7 +3,7 @@
 // Initialize Application
 window.initApp = function() {
     // 1. Initial Renders
-    renderTopBar();
+    // renderTopBar(); // Disabled for cleaner floating nav look
     renderNavigation();
     renderFooter();
     
@@ -646,71 +646,111 @@ function renderFooter() {
 }
 
 function renderNavigation() {
-    const container = document.querySelector('#navbar .hidden.lg\\:flex');
-    if (container && faticData.navigation) {
+    const desktopContainer = document.getElementById('desktop-nav-links');
+    const mobileContainer = document.getElementById('mobile-nav-links');
+    
+    if (desktopContainer && faticData.navigation) {
         let html = '';
         faticData.navigation.forEach(item => {
             if (item.type === 'dropdown') {
-                // Determine category filter if link is services.html?category=XYZ
-                // We extract the base page and params
+                 // Dropdown logic
                  html += `
-                    <div class="relative group h-full flex items-center">
-                        <button class="flex items-center hover:text-secondary py-4 uppercase tracking-wider transition-colors font-bold">
-                            ${item.name} <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                    <li class="relative group h-full flex items-center">
+                        <button class="nav-link inline-flex items-center py-2 font-bold text-xs lg:text-sm uppercase tracking-wider transition-colors hover:text-secondary text-gray-700">
+                            ${item.name} <i class="fas fa-chevron-down ml-1 text-[10px] transform group-hover:rotate-180 transition-transform"></i>
                         </button>
-                        <div class="absolute left-0 top-full w-56 bg-white shadow-xl rounded-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform translate-y-2 z-50">
-                             ${item.items.map(sub => {
-                                 // Parse link
-                                 let clickAction = "";
-                                 if(sub.link.includes('category=')) {
-                                     const parts = sub.link.split('?');
-                                     const page = parts[0].replace('.html', '');
-                                     const p = new URLSearchParams(parts[1]);
-                                     clickAction = `switchPage('${page}', {category: '${p.get('category')}'})`;
-                                 } else {
-                                     clickAction = `switchPage('${sub.link.replace('.html','')}')`;
-                                 }
-                                 return `<a href="#" onclick="${clickAction}; return false;" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary">${sub.name}</a>`
-                             }).join('')}
+                         <div class="absolute left-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-50">
+                             <div class="w-60 bg-white shadow-xl rounded-xl overflow-hidden border border-gray-100">
+                                 ${item.items.map(sub => {
+                                     let clickAction = "";
+                                     if(sub.link.includes('category=')) {
+                                         const parts = sub.link.split('?');
+                                         const page = parts[0].replace('.html', '');
+                                         const p = new URLSearchParams(parts[1]);
+                                         clickAction = `switchPage('${page}', {category: '${p.get('category')}'})`;
+                                     } else {
+                                         clickAction = `switchPage('${sub.link.replace('.html','')}')`;
+                                     }
+                                     return `<button onclick="${clickAction}" class="block w-full text-left px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary hover:pl-8 transition-all border-b border-gray-50 last:border-0 font-medium">${sub.name}</button>`
+                                 }).join('')}
+                             </div>
                         </div>
-                    </div>`;
+                    </li>`;
             } else if (item.link === 'contact.html') {
-                 html += `<button onclick="switchPage('contact')" class="px-5 py-2 bg-primary text-white rounded-full hover:bg-secondary transition-colors uppercase text-xs font-bold shadow-lg">Liên Hệ</button>`;
+                 // Skip contact button in main nav as it is handled separately
             } else {
-                html += `<button onclick="switchPage('${item.link.replace('.html','')}')" class="hover:text-secondary uppercase tracking-wider transition-colors font-bold">${item.name}</button>`;
+                html += `
+                    <li class="h-full flex items-center relative">
+                        <button onclick="switchPage('${item.link.replace('.html','')}')" class="nav-link inline-flex items-center py-2 font-bold text-xs lg:text-sm uppercase tracking-wider transition-colors hover:text-secondary text-gray-700">
+                            ${item.name}
+                        </button>
+                    </li>`;
             }
         });
-        container.innerHTML = html;
-        container.classList.add('gap-8');
+        desktopContainer.innerHTML = html;
     }
     
-    // render mobile similarly... (simplified for this update)
-     const mobileNavContainer = document.querySelector('#mobile-menu .flex.flex-col');
-    if (mobileNavContainer) {
-        mobileNavContainer.innerHTML = faticData.navigation.map(item => {
-             return `<button onclick="switchPage('${item.link.replace('.html','')}')" class="text-left py-2 border-b border-gray-100 font-bold text-gray-700">${item.name}</button>`;
+    // Mobile Nav
+    if (mobileContainer && faticData.navigation) {
+        mobileContainer.innerHTML = faticData.navigation.map(item => {
+             if (item.type === 'dropdown') {
+                return `
+                    <div class="py-2 border-b border-gray-50">
+                        <span class="block font-bold text-gray-800 mb-2">${item.name}</span>
+                        <div class="pl-4 space-y-2 border-l-2 border-gray-100">
+                            ${item.items.map(sub => {
+                                const clickAction = `switchPage('services', {category: '${sub.link.split('=')[1] || ''}'})`; 
+                                return `<button onclick="${clickAction}" class="block w-full text-left text-sm text-gray-600 py-1 hover:text-secondary transition-colors">${sub.name}</button>`
+                            }).join('')}
+                        </div>
+                    </div>
+                `;
+             }
+             if (item.link === 'contact.html') return `<button onclick="switchPage('contact')" class="text-left py-3 border-b border-gray-50 font-bold text-secondary hover:text-primary transition-colors">Liên Hệ</button>`;
+             return `<button onclick="switchPage('${item.link.replace('.html','')}')" class="text-left py-3 border-b border-gray-50 font-bold text-gray-700 hover:text-secondary transition-colors">${item.name}</button>`;
         }).join('');
     }
 }
 
 function updateActiveNavLink(currentSection) {
-    const navLinks = document.querySelectorAll('#navbar button, #navbar a');
-    navLinks.forEach(l => l.classList.remove('text-secondary'));
-    // Simple loose match
-    // ...
+    // Basic implementation highlighting
+    const navButtons = document.querySelectorAll('#desktop-nav-links .nav-link');
+    navButtons.forEach(btn => {
+        // Very basic text match or logic mapping needed
+        if(currentSection === 'home' && btn.innerText.includes('TRANG CHỦ')) btn.classList.add('text-secondary');
+        else if(currentSection === 'news' && btn.innerText.includes('TIN TỨC')) btn.classList.add('text-secondary');
+        // Add more mappings if needed
+        else btn.classList.remove('text-secondary');
+    });
 }
 
 function bindNavbarScrollListener() {
     const navbar = document.getElementById('navbar');
-    if (navbar) {
+    const scrollBtn = document.getElementById('scrollToTopBtn');
+
+    if (navbar || scrollBtn) {
         window.onscroll = () => {
-             if(window.scrollY > 20) {
-                navbar.classList.add('py-2', 'bg-white/95', 'shadow-md');
-                navbar.classList.remove('py-4');
-            } else {
-                navbar.classList.remove('py-2', 'bg-white/95', 'shadow-md');
-                navbar.classList.add('py-4');
-            }
+             const currentScroll = window.scrollY;
+
+             // Navbar Logic
+             if(navbar) {
+                 if(currentScroll > 50) {
+                    navbar.classList.add('py-2', 'shadow-lg');
+                    navbar.classList.remove('py-4', 'shadow-none');
+                } else {
+                    navbar.classList.remove('py-2', 'shadow-lg');
+                    navbar.classList.add('py-4', 'shadow-none');
+                }
+             }
+
+             // Scroll To Top Button Logic
+             if(scrollBtn) {
+                 if(currentScroll > 300) {
+                     scrollBtn.classList.remove('translate-y-20', 'opacity-0');
+                 } else {
+                     scrollBtn.classList.add('translate-y-20', 'opacity-0');
+                 }
+             }
         };
     }
 }

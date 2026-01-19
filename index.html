@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Công Ty Cổ Phần Dịch Vụ Kỹ Thuật và Thương Mại FATIC</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -13,7 +13,10 @@
             theme: {
                 extend: {
                     colors: { primary: '#0f2c59', secondary: '#d1a662', accent: '#f8f9fa', dark: '#1a1a1a' },
-                    fontFamily: { sans: ['Montserrat', 'sans-serif'], serif: ['Playfair Display', 'serif'] },
+                    fontFamily: { 
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'], 
+                        serif: ['"Plus Jakarta Sans"', 'sans-serif'] 
+                    },
                     animation: { 'fade-in-up': 'fadeInUp 0.8s ease-out forwards' },
                     keyframes: { fadeInUp: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } } }
                 }
@@ -27,7 +30,35 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
     <style>
         .hero-bg { background-image: linear-gradient(rgba(15, 44, 89, 0.85), rgba(15, 44, 89, 0.7)), url('images/hero_bg.png'); background-size: cover; background-position: center; background-attachment: fixed; }
-        .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(0,0,0,0.05); }
+        
+        /* Premium Glass Nav */
+        .glass-nav { 
+            background: rgba(255, 255, 255, 0.9); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Nav Link Hover Effect */
+        .nav-link {
+            position: relative;
+            padding: 5px 0;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #d1a662;
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
         #mobile-menu { transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out; max-height: 0; opacity: 0; overflow: hidden; }
         #mobile-menu.open { max-height: 600px; opacity: 1; }
         .section-view { display: none; opacity: 0; transition: opacity 0.5s ease-in-out; }
@@ -37,31 +68,43 @@
     </style>
     <link rel="stylesheet" href="css/custom.css">
 </head>
-<body class="font-sans text-gray-800 antialiased bg-gray-50 flex flex-col min-h-screen">
+<body class="font-sans text-gray-800 antialiased bg-gray-50 flex flex-col min-h-screen selection:bg-secondary selection:text-white">
 
     <!-- Navbar Wrapper (TopBar + Nav) -->
-    <div id="navbar-wrapper" class="fixed w-full z-50">
+    <div id="navbar-wrapper" class="fixed w-full z-50 top-4 px-4 md:px-8">
         <!-- Top Bar (Injected via JS) -->
-        <nav class="glass-nav transition-all duration-300" id="navbar">
-            <div class="container mx-auto px-6 py-4 flex justify-between items-center transition-all duration-300">
-                <a href="#" onclick="switchPage('home'); return false;" class="logo-container group logo-shiny">
-                    <img src="images/logo_new.png" alt="FATIC Logo" class="h-16 w-auto transition-transform group-hover:scale-105">
+        <nav class="glass-nav transition-all duration-300 rounded-2xl" id="navbar">
+            <div class="container mx-auto px-6 py-3 flex justify-between items-center transition-all duration-300">
+                <a href="#" onclick="switchPage('home'); return false;" class="logo-container group hover:bg-transparent shadow-none p-0 bg-transparent">
+                    <img src="images/logo_new.png" alt="FATIC Logo" class="h-12 w-auto transition-transform group-hover:scale-105">
                     <div class="hidden md:block">
-                        <span class="block text-xl font-bold text-primary tracking-tight">FATIC</span>
-                        <span class="block text-[10px] text-secondary font-medium tracking-widest uppercase">Solution & Development</span>
+                        <span class="block text-2xl font-black text-primary tracking-tighter leading-none">FATIC</span>
+                        <span class="block text-[9px] text-secondary font-bold tracking-[0.2em] uppercase leading-none mt-1">Solution & Development</span>
                     </div>
                 </a>
-                <div class="hidden lg:flex items-center space-x-8 text-sm font-semibold">
-                    <!-- JS Populated Nav Links -->
+                <div class="hidden lg:flex items-center space-x-10 text-sm font-bold text-gray-700 uppercase tracking-wide">
+                    <!-- Manual Links for better control or JS populated -->
+                     <ul class="flex space-x-8" id="desktop-nav-links">
+                        <!-- JS Injected but styled here -->
+                     </ul>
                 </div>
                 <div class="lg:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-gray-700 focus:outline-none hover:text-primary p-2">
+                    <button id="mobile-menu-btn" class="text-primary focus:outline-none hover:text-secondary p-2 transition-colors">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
+                
+                <!-- Call To Action Button (Desktop) -->
+                <div class="hidden lg:block">
+                    <button onclick="switchPage('contact')" class="px-6 py-2.5 rounded-full bg-primary text-white text-xs font-bold uppercase tracking-wider hover:bg-secondary transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+                        Liên Hệ Ngay
+                    </button>
+                </div>
             </div>
-            <div id="mobile-menu" class="lg:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100">
-                <div class="flex flex-col px-6 py-4 space-y-4">
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="lg:hidden bg-white/95 backdrop-blur-xl border-t border-gray-100 rounded-b-2xl">
+                <div class="flex flex-col px-6 py-4 space-y-4" id="mobile-nav-links">
                      <!-- JS Populated -->
                 </div>
             </div>
@@ -657,6 +700,11 @@
     <!-- Footer (Injected via JS) -->
     <footer id="main-footer"></footer>
 
+    <!-- Scroll To Top Button -->
+    <button id="scrollToTopBtn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 bg-secondary text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center transform translate-y-20 opacity-0 transition-all duration-300 z-50 hover:bg-primary hover:-translate-y-1 focus:outline-none">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src="js/data.js"></script>
