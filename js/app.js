@@ -77,37 +77,152 @@ window.switchPage = function(pageName, params = {}) {
 // --- CONTENT RENDERERS ---
 
 function renderHomeContent() {
-    // Services Widget
+    // Hero Slider
+    const hContainer = document.getElementById('hero-slider');
+    if(hContainer && faticData.heroSlider) {
+        if($(hContainer).hasClass('slick-initialized')) $(hContainer).slick('unslick');
+        hContainer.innerHTML = "";
+        faticData.heroSlider.forEach(item => {
+            // Check if link has params
+            let clickAction = "";
+             if(item.btnLink.includes('category=')) {
+                 const p = item.btnLink.split('?');
+                 clickAction = `switchPage('${p[0]}', {category: '${p[1].split('=')[1]}' })`;
+             } else {
+                 clickAction = `switchPage('${item.btnLink}')`;
+             }
+
+            hContainer.innerHTML += `
+                <div class="relative min-h-screen flex items-center pt-[100px] outline-none">
+                    <!-- Background Image -->
+                    <div class="absolute inset-0 z-0">
+                         <img src="${item.image}" class="w-full h-full object-cover animation-zoom-effect">
+                    </div>
+                    <!-- Gradient Overlay -->
+                    <div class="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-transparent/10 z-10"></div>
+                    
+                    <!-- Content -->
+                    <div class="container mx-auto px-6 relative z-20 flex flex-col md:flex-row items-center h-full justify-center md:justify-start">
+                        <div class="md:w-3/4 lg:w-3/5 text-white pl-4 md:pl-0">
+                            <div class="inline-block px-4 py-1 mb-6 border border-secondary/50 rounded-full bg-primary/30 backdrop-blur-sm animate__animated animate__fadeInDown">
+                                <span class="text-secondary text-sm font-semibold tracking-wider uppercase">${item.badge}</span>
+                            </div>
+                            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 font-serif animate__animated animate__fadeInUp animate__delay-1s">
+                                ${item.title} <br>
+                                <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-yellow-200">${item.highlight}</span>
+                            </h1>
+                            <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl leading-relaxed font-light animate__animated animate__fadeInUp animate__delay-2s">
+                                ${item.description}
+                            </p>
+                            <div class="flex flex-col sm:flex-row gap-4 animate__animated animate__fadeInUp animate__delay-3s">
+                                <button onclick="${clickAction}" class="px-8 py-4 bg-secondary text-white font-bold rounded-full hover:bg-white hover:text-primary transition-all shadow-lg flex items-center justify-center gap-2 group">
+                                    ${item.btnText} <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                                </button>
+                                <button onclick="switchPage('contact')" class="px-8 py-4 border-2 border-white text-white font-bold rounded-full hover:bg-white hover:text-primary transition-all flex items-center justify-center text-center">
+                                    Liên Hệ Tư Vấn
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    // Intro Slider (Removed as user reverted change, but function logic remains if data exists)
+    // ...
+
+    // Services Widget (Slick Slider format)
     const sContainer = document.getElementById('home-services');
     if (sContainer) {
+        // Destroy slick if exists to allow re-render
+        if($(sContainer).hasClass('slick-initialized')) {
+            $(sContainer).slick('unslick');
+        }
         sContainer.innerHTML = "";
-        faticData.services.slice(0, 9).forEach(item => {
+        faticData.services.forEach(item => {
              sContainer.innerHTML += `
-                <div class="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow border border-gray-100 flex flex-col items-center text-center cursor-pointer group" onclick="switchPage('detail', {type: 'service', id: '${item.id}'})">
-                    <div class="w-16 h-16 bg-white rounded-full flex items-center justify-center text-secondary text-2xl mb-4 shadow-sm group-hover:bg-secondary group-hover:text-white transition-colors">
-                        <i class="${item.icon}"></i>
+                <div class="px-4 py-2 h-full">
+                    <div class="bg-gray-50 rounded-xl p-8 hover:shadow-xl transition-all border border-gray-100 flex flex-col items-center text-center cursor-pointer group h-full bg-white relative top-0 hover:-top-2 duration-300" onclick="switchPage('detail', {type: 'service', id: '${item.id}'})">
+                        <div class="w-20 h-20 bg-primary/5 rounded-full flex items-center justify-center text-secondary text-3xl mb-6 shadow-sm group-hover:bg-secondary group-hover:text-white transition-colors">
+                            <i class="${item.icon}"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-3 group-hover:text-secondary transition-colors font-serif">${item.title}</h3>
+                        <p class="text-gray-500 text-sm line-clamp-3 mb-4">${item.shortDesc}</p>
+                        <span class="mt-auto text-secondary text-xs font-bold uppercase tracking-wider group-hover:underline">Chi tiết <i class="fas fa-arrow-right"></i></span>
                     </div>
-                    <h3 class="text-xl font-bold text-primary mb-2 group-hover:text-secondary transition-colors">${item.title}</h3>
-                    <p class="text-gray-500 text-sm line-clamp-2">${item.shortDesc}</p>
                 </div>
              `;
         });
     }
-    // Projects Widget
+    
+    // Projects Widget (Slick Slider format)
     const pContainer = document.getElementById('home-projects');
     if (pContainer) {
+         if($(pContainer).hasClass('slick-initialized')) {
+            $(pContainer).slick('unslick');
+        }
          pContainer.innerHTML = "";
-         faticData.projects.slice(0, 2).forEach(item => {
+         faticData.projects.forEach(item => {
              pContainer.innerHTML += `
-                <div class="relative rounded-xl overflow-hidden h-64 group cursor-pointer" onclick="switchPage('detail', {type: 'project', id: '${item.id}'})">
-                    <img src="${item.image}" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
-                    <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                        <span class="text-white font-bold border border-white px-4 py-2 rounded-full uppercase text-xs hover:bg-white hover:text-black transition-colors">${item.title}</span>
+                <div class="px-4">
+                    <div class="relative rounded-2xl overflow-hidden h-[350px] group cursor-pointer shadow-lg" onclick="switchPage('detail', {type: 'project', id: '${item.id}'})">
+                        <img src="${item.image}" loading="lazy" class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent flex flex-col justify-end p-6">
+                            <div class="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                                <span class="text-secondary text-xs uppercase font-bold tracking-widest mb-1 block">${getCategoryName(item.category)}</span>
+                                <h3 class="text-white font-bold text-xl mb-2 font-serif group-hover:text-secondary transition-colors">${item.title}</h3>
+                                <p class="text-gray-300 text-xs line-clamp-2 opacity-0 group-hover:opacity-100 transition-opacity">${item.description}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
              `;
-         })
+         });
     }
+
+    // Testimonials Widget
+    const tContainer = document.getElementById('home-testimonials');
+    if(tContainer && faticData.testimonials) {
+         if($(tContainer).hasClass('slick-initialized')) {
+            $(tContainer).slick('unslick');
+        }
+        tContainer.innerHTML = "";
+        faticData.testimonials.forEach(item => {
+            tContainer.innerHTML += `
+                <div class="px-4 py-4"> 
+                    <div class="bg-white rounded-xl shadow-lg border-t-2 border-secondary p-6 md:p-8 text-center relative mx-auto max-w-2xl transform transition-transform hover:-translate-y-1">
+                        <!-- Compact Quote Icon -->
+                        <div class="absolute top-2 right-4 text-6xl text-gray-100 font-serif opacity-50 z-0 leading-none">”</div>
+                        
+                        <div class="relative z-10 flex flex-col items-center">
+                            <!-- Compact Avatar -->
+                            <div class="w-16 h-16 mb-4 p-0.5 rounded-full bg-gradient-to-r from-secondary to-primary shadow-md">
+                                <img src="${item.avatar}" class="w-full h-full rounded-full object-cover border-2 border-white">
+                            </div>
+                            
+                            <!-- Rating -->
+                            <div class="flex justify-center gap-0.5 text-yellow-400 mb-4 text-xs">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+
+                            <!-- Content -->
+                            <p class="text-gray-600 italic mb-6 text-base leading-relaxed font-light line-clamp-4">
+                                "${item.content}"
+                            </p>
+                            
+                            <!-- Author Info -->
+                            <div class="border-t border-gray-100 pt-4 w-full">
+                                <h4 class="font-bold text-lg text-primary font-serif">${item.name}</h4>
+                                <p class="text-secondary text-xs uppercase tracking-widest font-bold mt-0.5">${item.role}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
     // News Widget
     const nContainer = document.getElementById('home-news');
     if (nContainer) {
@@ -128,7 +243,109 @@ function renderHomeContent() {
             `;
         });
     }
-    setTimeout(initScrollAnimations, 100);
+    setTimeout(() => {
+        if(typeof initHomeSliders === 'function') initHomeSliders();
+        initScrollAnimations();
+    }, 100);
+}
+
+function initHomeSliders() {
+    // Hero Slider
+    $('.hero-slider').not('.slick-initialized').slick({
+        dots: true,
+        infinite: true,
+        speed: 1000,
+        fade: true,
+        cssEase: 'linear',
+        autoplay: true,
+        autoplaySpeed: 5000,
+        arrows: false, // Arrows often conflict with full width/height, dots are cleaner for hero
+        pauseOnHover: false
+    });
+
+    // Intro Slider
+    $('.intro-slider').not('.slick-initialized').slick({
+        dots: true,
+        infinite: true,
+        speed: 1000,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        fade: true,
+        cssEase: 'linear',
+        arrows: true,
+        prevArrow: '<button type="button" class="slick-prev !left-8 !z-20"><i class="fas fa-chevron-left"></i></button>',
+        nextArrow: '<button type="button" class="slick-next !right-8 !z-20"><i class="fas fa-chevron-right"></i></button>'
+    });
+
+    // Service Slider
+    $('.service-slider').not('.slick-initialized').slick({
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 3000,
+        pauseOnHover: true,
+        responsive: [
+            { breakpoint: 1024, settings: { slidesToShow: 2 } },
+            { breakpoint: 640, settings: { slidesToShow: 1 } }
+        ],
+        prevArrow: '<button type="button" class="slick-prev"><i class="fas fa-chevron-left"></i></button>',
+        nextArrow: '<button type="button" class="slick-next"><i class="fas fa-chevron-right"></i></button>'
+    });
+
+    // Project Slider
+    $('.project-slider').not('.slick-initialized').slick({
+        dots: false,
+        infinite: true,
+        speed: 800,
+        slidesToShow: 2,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 4000,
+         responsive: [
+            { breakpoint: 768, settings: { slidesToShow: 1 } }
+        ],
+        prevArrow: '<button type="button" class="slick-prev !-left-4"><i class="fas fa-chevron-left"></i></button>',
+        nextArrow: '<button type="button" class="slick-next !-right-4"><i class="fas fa-chevron-right"></i></button>'
+    });
+
+    // Testimonial Slider
+    $('.testimonial-slider').not('.slick-initialized').slick({
+        dots: true, // Enable Dots
+        arrows: false, // Keep arrows hidden effectively or style them if needed. Usually dots are enough for testimonials.
+        infinite: true,
+        speed: 800,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        fade: false, // Disable fade for slide effect if prefer movement
+        cssEase: 'cubic-bezier(0.4, 0, 0.2, 1)',
+        adaptiveHeight: true
+    });
+
+    // Partner Slider
+    $('.partner-slider').not('.slick-initialized').slick({
+        dots: false,
+        arrows: false,
+        infinite: true,
+        speed: 3000, // continuous
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 0,
+        cssEase: 'linear',
+        variableWidth: false,
+        responsive: [
+            { breakpoint: 1024, settings: { slidesToShow: 4 } },
+            { breakpoint: 768, settings: { slidesToShow: 3 } },
+            { breakpoint: 480, settings: { slidesToShow: 2 } }
+        ]
+    });
 }
 
 function renderServicesContent(categoryFilter = null) {

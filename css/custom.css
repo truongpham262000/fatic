@@ -1,5 +1,13 @@
 /* Custom Animations & Global Styles */
 
+@keyframes zoomEffect {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.1); }
+}
+.animation-zoom-effect {
+    animation: zoomEffect 20s linear infinite alternate;
+}
+
 :root {
   --animate-duration: 0.8s;
   --animate-delay: 0.2s;
@@ -82,4 +90,84 @@
     height: 100%;
     pointer-events: none;
     z-index: 9999;
+}
+
+
+/* --- SLICK SLIDER CUSTOMIZATION --- */
+
+/* Arrows */
+.slick-prev, .slick-next {
+    z-index: 50; /* Increased z-index */
+    width: 44px;
+    height: 44px;
+    background: white !important;
+    border-radius: 50%;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: all 0.3s ease;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.slick-prev { left: -25px; }
+.slick-next { right: -25px; }
+
+.slick-prev:before, .slick-next:before {
+    content: '' !important; /* Ensure no default character */
+    display: none;
+}
+
+.slick-prev i, .slick-next i {
+    color: #0f2c59; /* Primary color */
+    font-size: 18px;
+    line-height: 1; /* Reset line-height */
+}
+
+.slick-prev:hover, .slick-next:hover {
+    background: #d1a662 !important; /* Secondary color */
+    box-shadow: 0 4px 15px rgba(209, 166, 98, 0.4);
+    transform: scale(1.1);
+}
+
+.slick-prev:hover i, .slick-next:hover i {
+    color: white;
+}
+
+/* Dots */
+.slick-dots {
+    bottom: -40px; /* Push dots lower */
+}
+
+.slick-dots li {
+    margin: 0 4px;
+}
+
+.slick-dots li button:before {
+    font-size: 10px;
+    color: #e5e5e5;
+    opacity: 1;
+    transition: all 0.3s;
+}
+
+.slick-dots li.slick-active button:before {
+    color: #d1a662; /* Secondary */
+    font-size: 14px;
+}
+
+/* Testimonial Specifics */
+.testimonial-slider .slick-list {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Fix for equal height slides */
+.slick-track {
+    display: flex !important;
+    gap: 0;
+}
+
+.slick-slide {
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column;
 }

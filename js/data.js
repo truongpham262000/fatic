@@ -299,8 +299,8 @@ const faticData = {
             image: "images/future_tech_hub.png",
             gallery: ["images/future_tech_hub.png", "images/content_meeting.png"],
             fullContent: `
-                <h3>Chuyển Đổi Số Là Tất Yếu</h3>
-                <p>Tại hội thảo, CEO của FATIC đã nhấn mạnh vai trò của dữ liệu lớn (Big Data) trong việc dự báo các sự cố kỹ thuật. Việc chuyển đổi số không chỉ giúp giảm chi phí mà còn tăng tính minh bạch trong quản lý tài chính tòa nhà.</p>
+                <h3>AI - Trợ Lý Ảo Đắc Lực</h3>
+                <p>Tại hội thảo, ông Nguyễn Văn A - CEO FATIC đã trình bày tham luận về việc ứng dụng trí tuệ nhân tạo để dự báo sự cố kỹ thuật thang máy và hệ thống điện.</p>
             `
         },
         {
@@ -320,6 +320,83 @@ const faticData = {
             content: "Nâng cao kỹ năng xử lý sự cố cháy nổ cho lực lượng an ninh và kỹ thuật tại dự án.",
             image: "images/content_maintenance.png",
              fullContent: `<h3>An Toàn Là Sinh Mệnh</h3><p>Buổi diễn tập có sự tham gia của Cảnh sát PCCC TP Hà Nội nhằm đảm bảo tính thực tế cao nhất.</p>`
+        }
+    ],
+    heroSlider: [
+        {
+            image: "images/hero_bg.png",
+            badge: "Chuyên Nghiệp - Tận Tâm - Hiệu Quả",
+            title: "Quản Lý Vận Hành",
+            highlight: "Đẳng Cấp Quốc Tế",
+            description: "FATIC tiên phong ứng dụng công nghệ và tiêu chuẩn quốc tế, mang lại giá trị bền vững cho khách hàng và cộng đồng.",
+            btnText: "Khám Phá Dịch Vụ",
+            btnLink: "services"
+        },
+        {
+            image: "images/future_smart_city.png",
+            badge: "Công Nghệ - Thông Minh - Tiên Tiến",
+            title: "Giải Pháp Công Nghệ",
+            highlight: "Tiên Phong 4.0",
+            description: "Ứng dụng AI, IoT và Big Data vào quản lý vận hành, tối ưu hóa năng lượng và nâng cao trải nghiệm cư dân.",
+            btnText: "Xem Công Nghệ",
+            btnLink: "services?category=CN"
+        },
+        {
+            image: "images/project_apartment.png",
+            badge: "Xanh - Sạch - Đẹp",
+            title: "Không Gian Sống",
+            highlight: "Chuẩn Mực & Bền Vững",
+            description: "Kiến tạo môi trường sống trong lành, văn minh với dịch vụ chăm sóc cảnh quan và vệ sinh chuyên sâu.",
+            btnText: "Dự Án Tiêu Biểu",
+            btnLink: "projects"
+        }
+    ],
+    introSlider: [
+        {
+            image: "images/content_meeting.png",
+            title: "Tận Tâm Phục Vụ",
+            description: "Đội ngũ nhân sự chuyên nghiệp, được đào tạo bài bản để mang đến dịch vụ tốt nhất."
+        },
+        {
+            image: "images/future_tech_hub.png",
+            title: "Công Nghệ Hiện Đại",
+            description: "Ứng dụng giải pháp quản lý 4.0, Smarthome và AI vào vận hành tòa nhà."
+        },
+        {
+            image: "images/content_maintenance.png",
+            title: "Kỹ Thuật Chuyên Sâu",
+            description: "Quy trình bảo trì kỹ thuật chuẩn quốc tế, đảm bảo an toàn và hiệu quả."
+        },
+        {
+            image: "images/service_building.png",
+            title: "Không Gian Xanh",
+            description: "Kiến tạo môi trường sống trong lành, văn minh và bền vững cho cộng đồng."
+        }
+    ],
+    testimonials: [
+        {
+            name: "Ông Nguyễn Anh Tuấn",
+            role: "Chủ tịch BQT The Zen Residence",
+            content: "Chúng tôi rất hài lòng với sự chuyên nghiệp của FATIC. Từ khi FATIC tiếp quản, chất lượng an ninh và vệ sinh được cải thiện rõ rệt. Cư dân cảm thấy an tâm hơn rất nhiều.",
+            avatar: "https://ui-avatars.com/api/?name=Nguyen+Anh+Tuan&background=0D8ABC&color=fff"
+        },
+        {
+            name: "Bà Trần Minh Ngọc",
+            role: "Giám đốc Nhân sự SamSung R&D",
+            content: "Hệ thống kỹ thuật của nhà máy hoạt động rất ổn định nhờ công tác bảo trì ngăn ngừa bài bản của FATIC. Đội ngũ kỹ thuật viên luôn có mặt kịp thời khi có yêu cầu.",
+            avatar: "https://ui-avatars.com/api/?name=Tran+Minh+Ngoc&background=d1a662&color=fff"
+        },
+        {
+            name: "Ông Peter Smith",
+            role: "Đại diện CĐT Park City",
+            content: "FATIC is a trusted partner. They understand global standards and apply them effectively in local conditions. Highly recommended!",
+            avatar: "https://ui-avatars.com/api/?name=Peter+Smith&background=1a1a1a&color=fff"
+        },
+        {
+            name: "Bà Lê Thu Hà",
+            role: "Trưởng BQT Chung cư Cao cấp Skyline",
+            content: "Sự minh bạch trong tài chính là điều tôi đánh giá cao nhất ở FATIC. Mọi khoản chi đều được báo cáo chi tiết và rõ ràng qua App cư dân.",
+            avatar: "https://ui-avatars.com/api/?name=Le+Thu+Ha&background=purple&color=fff"
         }
     ]
 };
