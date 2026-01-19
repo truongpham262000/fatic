@@ -656,11 +656,11 @@ function renderNavigation() {
                  // Dropdown logic
                  html += `
                     <li class="relative group h-full flex items-center">
-                        <button class="nav-link inline-flex items-center py-2 font-bold text-xs lg:text-sm uppercase tracking-wider transition-colors hover:text-secondary text-gray-700">
+                        <button class="nav-link inline-flex items-center px-4 py-2 rounded-full font-bold text-xs lg:text-sm uppercase tracking-wider transition-all hover:bg-primary/5 text-primary/80 hover:text-primary">
                             ${item.name} <i class="fas fa-chevron-down ml-1 text-[10px] transform group-hover:rotate-180 transition-transform"></i>
                         </button>
                          <div class="absolute left-0 top-full pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0 z-50">
-                             <div class="w-60 bg-white shadow-xl rounded-xl overflow-hidden border border-gray-100">
+                             <div class="w-60 bg-white/90 backdrop-blur-xl shadow-2xl rounded-2xl overflow-hidden border border-white/50 p-2">
                                  ${item.items.map(sub => {
                                      let clickAction = "";
                                      if(sub.link.includes('category=')) {
@@ -671,17 +671,17 @@ function renderNavigation() {
                                      } else {
                                          clickAction = `switchPage('${sub.link.replace('.html','')}')`;
                                      }
-                                     return `<button onclick="${clickAction}" class="block w-full text-left px-6 py-3 text-sm text-gray-700 hover:bg-gray-50 hover:text-secondary hover:pl-8 transition-all border-b border-gray-50 last:border-0 font-medium">${sub.name}</button>`
+                                     return `<button onclick="${clickAction}" class="block w-full text-left px-4 py-3 rounded-lg text-sm text-gray-700 hover:bg-white hover:text-primary hover:shadow-sm transition-all font-medium">${sub.name}</button>`
                                  }).join('')}
                              </div>
                         </div>
                     </li>`;
             } else if (item.link === 'contact.html') {
-                 // Skip contact button in main nav as it is handled separately
+                 // Skip
             } else {
                 html += `
                     <li class="h-full flex items-center relative">
-                        <button onclick="switchPage('${item.link.replace('.html','')}')" class="nav-link inline-flex items-center py-2 font-bold text-xs lg:text-sm uppercase tracking-wider transition-colors hover:text-secondary text-gray-700">
+                        <button onclick="switchPage('${item.link.replace('.html','')}')" class="nav-link inline-flex items-center px-4 py-2 rounded-full font-bold text-xs lg:text-sm uppercase tracking-wider transition-all hover:bg-primary/5 text-primary/80 hover:text-primary">
                             ${item.name}
                         </button>
                     </li>`;
