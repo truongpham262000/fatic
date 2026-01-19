@@ -104,17 +104,17 @@ function renderHomeContent() {
                     <!-- Content -->
                     <div class="container mx-auto px-6 relative z-20 flex flex-col md:flex-row items-center h-full justify-center md:justify-start">
                         <div class="md:w-3/4 lg:w-3/5 text-white pl-4 md:pl-0">
-                            <div class="inline-block px-4 py-1 mb-6 border border-secondary/50 rounded-full bg-primary/30 backdrop-blur-sm animate__animated animate__fadeInDown">
+                            <div class="inline-block px-4 py-1 mb-6 border border-secondary/50 rounded-full bg-primary/30 backdrop-blur-sm animate-text-load delay-100">
                                 <span class="text-secondary text-sm font-semibold tracking-wider uppercase">${item.badge}</span>
                             </div>
-                            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 font-serif animate__animated animate__fadeInUp animate__delay-1s">
+                            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 font-serif animate-text-load delay-200">
                                 ${item.title} <br>
                                 <span class="text-transparent bg-clip-text bg-gradient-to-r from-secondary to-yellow-200">${item.highlight}</span>
                             </h1>
-                            <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl leading-relaxed font-light animate__animated animate__fadeInUp animate__delay-2s">
+                            <p class="text-lg md:text-xl text-gray-200 mb-10 max-w-2xl leading-relaxed font-light animate-text-load delay-300">
                                 ${item.description}
                             </p>
-                            <div class="flex flex-col sm:flex-row gap-4 animate__animated animate__fadeInUp animate__delay-3s">
+                            <div class="flex flex-col sm:flex-row gap-4 animate-text-load delay-500">
                                 <button onclick="${clickAction}" class="px-8 py-4 bg-secondary text-white font-bold rounded-full hover:bg-white hover:text-primary transition-all shadow-lg flex items-center justify-center gap-2 group">
                                     ${item.btnText} <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                                 </button>
@@ -251,7 +251,8 @@ function renderHomeContent() {
 
 function initHomeSliders() {
     // Hero Slider
-    $('.hero-slider').not('.slick-initialized').slick({
+    const $heroSlider = $('.hero-slider');
+    $heroSlider.not('.slick-initialized').slick({
         dots: true,
         infinite: true,
         speed: 1000,
@@ -259,8 +260,23 @@ function initHomeSliders() {
         cssEase: 'linear',
         autoplay: true,
         autoplaySpeed: 5000,
-        arrows: false, // Arrows often conflict with full width/height, dots are cleaner for hero
+        arrows: false,
         pauseOnHover: false
+    });
+    
+    // Re-trigger animations on slide change
+    $heroSlider.on('beforeChange', function(event, slick, currentSlide, nextSlide){
+        const nextSlideEl = slick.$slides.eq(nextSlide);
+        const animatedEls = nextSlideEl.find('.animate-text-load');
+        
+        // Remove class to reset
+        animatedEls.removeClass('animate-text-load');
+        
+        // Force reflow
+        void nextSlideEl[0].offsetWidth; 
+        
+        // Add class back to trigger animation
+        animatedEls.addClass('animate-text-load');
     });
 
     // Intro Slider
@@ -739,19 +755,32 @@ window.switchHistory = function(year) {
 };
 
 function initScrollAnimations() { 
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
+            // SCROLL DOWN: Reveal
             if (entry.isIntersecting) {
-                entry.target.classList.add('active', 'animate__animated', 'animate__fadeInUp', 'animate-soft');
-                observer.unobserve(entry.target);
+                entry.target.classList.add('active', 'animate__animated', 'animate__fadeInUp');
+                entry.target.classList.remove('invisible', 'opacity-0'); 
+            } 
+            // SCROLL UP/OUT: Hide (Reset animation)
+            else {
+                // Remove active class to hide element
+                entry.target.classList.remove('active', 'animate__animated', 'animate__fadeInUp');
+                entry.target.classList.add('opacity-0'); // Hide it so it can fade in again
             }
         });
     }, {
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px" // Trigger slightly before bottom
+        threshold: 0.05, // Trigger even earlier for smoother continuous feel
+        rootMargin: "0px 0px -20px 0px" 
     });
 
-    document.querySelectorAll('.reveal:not(.active)').forEach(el => {
+    // Re-observe all potentially dynamic elements
+    // We use a specific selector or just .reveal
+    document.querySelectorAll('.reveal').forEach(el => {
+        // Initial state
+        if(!el.classList.contains('active')) {
+             el.classList.add('opacity-0'); // Start hidden
+        }
         observer.observe(el);
     });
 }

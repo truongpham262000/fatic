@@ -171,3 +171,43 @@
     display: flex !important;
     flex-direction: column;
 }
+
+/* Animation Classes */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
+    backface-visibility: hidden; /* GPU Acceleration */
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal.animate__fadeInUp {
+    animation: none !important;
+}
+
+/* Text Load Animation */
+@keyframes textLoadUp {
+    0% { opacity: 0; transform: translate3d(0, 30px, 0); } /* Use 3D for GPU */
+    100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+.animate-text-load {
+    opacity: 0;
+    animation: textLoadUp 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards; /* Smooth ease-out-cubic */
+    will-change: opacity, transform;
+}
+
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* Generic smooth transition class */
+.smooth-transition {
+    transition: all 0.3s ease-in-out;
+}
