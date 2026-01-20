@@ -246,41 +246,64 @@
                             <span class="text-secondary font-bold tracking-widest uppercase text-sm">Quy Trình Làm Việc</span>
                             <h2 class="text-3xl font-bold text-primary mt-2 font-serif">Đơn Giản & Hiệu Quả</h2>
                         </div>
-                        <div class="grid md:grid-cols-4 gap-4 relative">
-                            <!-- Helper Line (Desktop) -->
-                            <div class="hidden md:block absolute top-12 left-10 right-10 h-0.5 bg-gray-200 -z-10"></div>
-                            
-                            <!-- Step 1 -->
-                            <div class="text-center bg-white p-4">
-                                <div class="w-24 h-24 mx-auto bg-white border-4 border-secondary text-secondary rounded-full flex items-center justify-center text-3xl font-bold mb-6 relative z-10">
-                                    01
-                                </div>
-                                <h3 class="font-bold text-primary text-lg">Tiếp Nhận</h3>
-                                <p class="text-gray-500 text-sm mt-2">Khảo sát hiện trạng và lắng nghe nhu cầu của đối tác.</p>
+                        <div id="process-section" class="relative max-w-6xl mx-auto">
+                            <!-- Connecting Line (Desktop) -->
+                            <div class="hidden md:block absolute top-[60px] left-[10%] right-[10%] h-1 bg-gray-200 z-0">
+                                <div class="h-full bg-gradient-to-r from-secondary to-primary w-0 transition-all duration-1000 ease-out" id="process-line"></div>
                             </div>
-                             <!-- Step 2 -->
-                            <div class="text-center bg-white p-4">
-                                <div class="w-24 h-24 mx-auto bg-white border-4 border-gray-200 text-gray-400 rounded-full flex items-center justify-center text-3xl font-bold mb-6 relative z-10">
-                                    02
+
+                            <div class="grid md:grid-cols-4 gap-8 relative z-10">
+                                <!-- Step 1 -->
+                                <div class="group relative pt-8 reveal text-center">
+                                    <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center relative mb-8 shadow-xl border-4 border-gray-50 transition-transform duration-500 group-hover:scale-110 group-hover:border-secondary">
+                                        <div class="absolute inset-0 bg-secondary opacity-0 group-hover:opacity-10 rounded-full transition-opacity duration-300"></div>
+                                        <span class="text-4xl font-black text-gray-200 group-hover:text-secondary transition-colors duration-300 font-serif">01</span>
+                                        <div class="absolute -bottom-3 bg-secondary text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg">TIẾP NHẬN</div>
+                                    </div>
+                                    <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-transparent group-hover:border-secondary transition-all hover:-translate-y-2">
+                                        <h3 class="font-bold text-primary text-xl mb-3">Khảo Sát & Lắng Nghe</h3>
+                                        <p class="text-gray-500 text-sm leading-relaxed">Tiếp nhận thông tin, khảo sát hiện trạng thực tế và lắng nghe sâu sắc nhu cầu của Đối tác.</p>
+                                    </div>
                                 </div>
-                                <h3 class="font-bold text-primary text-lg">Đề Xuất</h3>
-                                <p class="text-gray-500 text-sm mt-2">Xây dựng phương án quản lý và ngân sách tối ưu.</p>
-                            </div>
-                             <!-- Step 3 -->
-                            <div class="text-center bg-white p-4">
-                                <div class="w-24 h-24 mx-auto bg-white border-4 border-gray-200 text-gray-400 rounded-full flex items-center justify-center text-3xl font-bold mb-6 relative z-10">
-                                    03
+
+                                <!-- Step 2 -->
+                                <div class="group relative pt-8 reveal text-center" style="transition-delay: 200ms">
+                                    <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center relative mb-8 shadow-xl border-4 border-gray-50 transition-transform duration-500 group-hover:scale-110 group-hover:border-secondary">
+                                        <div class="absolute inset-0 bg-secondary opacity-0 group-hover:opacity-10 rounded-full transition-opacity duration-300"></div>
+                                        <span class="text-4xl font-black text-gray-200 group-hover:text-secondary transition-colors duration-300 font-serif">02</span>
+                                        <div class="absolute -bottom-3 bg-gray-500 group-hover:bg-secondary text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg transition-colors">ĐỀ XUẤT</div>
+                                    </div>
+                                    <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-transparent group-hover:border-secondary transition-all hover:-translate-y-2">
+                                        <h3 class="font-bold text-primary text-xl mb-3">Giải Pháp & Ngân Sách</h3>
+                                        <p class="text-gray-500 text-sm leading-relaxed">Xây dựng phương án quản lý vận hành "May đo" và bảng ngân sách chi tiết, minh bạch.</p>
+                                    </div>
                                 </div>
-                                <h3 class="font-bold text-primary text-lg">Triển Khai</h3>
-                                <p class="text-gray-500 text-sm mt-2">Setup bộ máy nhân sự và quy trình vận hành chi tiết.</p>
-                            </div>
-                             <!-- Step 4 -->
-                            <div class="text-center bg-white p-4">
-                                <div class="w-24 h-24 mx-auto bg-white border-4 border-gray-200 text-gray-400 rounded-full flex items-center justify-center text-3xl font-bold mb-6 relative z-10">
-                                    04
+
+                                <!-- Step 3 -->
+                                <div class="group relative pt-8 reveal text-center" style="transition-delay: 400ms">
+                                    <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center relative mb-8 shadow-xl border-4 border-gray-50 transition-transform duration-500 group-hover:scale-110 group-hover:border-secondary">
+                                        <div class="absolute inset-0 bg-secondary opacity-0 group-hover:opacity-10 rounded-full transition-opacity duration-300"></div>
+                                        <span class="text-4xl font-black text-gray-200 group-hover:text-secondary transition-colors duration-300 font-serif">03</span>
+                                        <div class="absolute -bottom-3 bg-gray-500 group-hover:bg-secondary text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg transition-colors">TRIỂN KHAI</div>
+                                    </div>
+                                    <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-transparent group-hover:border-secondary transition-all hover:-translate-y-2">
+                                        <h3 class="font-bold text-primary text-xl mb-3">Setup & Vận Hành</h3>
+                                        <p class="text-gray-500 text-sm leading-relaxed">Thiết lập bộ máy nhân sự, chuyển giao quy trình công nghệ và vận hành ổn định.</p>
+                                    </div>
                                 </div>
-                                <h3 class="font-bold text-primary text-lg">Cải Tiến</h3>
-                                <p class="text-gray-500 text-sm mt-2">Đánh giá định kỳ và liên tục cải tiến chất lượng dịch vụ.</p>
+
+                                <!-- Step 4 -->
+                                <div class="group relative pt-8 reveal text-center" style="transition-delay: 600ms">
+                                    <div class="w-32 h-32 mx-auto bg-white rounded-full flex items-center justify-center relative mb-8 shadow-xl border-4 border-gray-50 transition-transform duration-500 group-hover:scale-110 group-hover:border-secondary">
+                                        <div class="absolute inset-0 bg-secondary opacity-0 group-hover:opacity-10 rounded-full transition-opacity duration-300"></div>
+                                        <span class="text-4xl font-black text-gray-200 group-hover:text-secondary transition-colors duration-300 font-serif">04</span>
+                                        <div class="absolute -bottom-3 bg-gray-500 group-hover:bg-secondary text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg transition-colors">CẢI TIẾN</div>
+                                    </div>
+                                    <div class="bg-white p-6 rounded-2xl shadow-lg border-b-4 border-transparent group-hover:border-secondary transition-all hover:-translate-y-2">
+                                        <h3 class="font-bold text-primary text-xl mb-3">Đánh Giá & Tối Ưu</h3>
+                                        <p class="text-gray-500 text-sm leading-relaxed">Định kỳ đánh giá KPI, lắng nghe ý kiến khách hàng để liên tục cải tiến chất lượng dịch vụ.</p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -298,26 +321,36 @@
                         <div id="home-news" class="grid md:grid-cols-3 gap-8"></div>
                     </div>
 
-                   <!-- TESTIMONIALS SLIDER (Moved) -->
-                    <div class="mb-20 bg-gray-50 -mx-6 px-6 py-16 rounded-3xl">
-                         <div class="text-center mb-10">
-                            <span class="text-secondary font-bold tracking-widest uppercase text-sm">Cảm Nhận Khách Hàng</span>
-                            <h2 class="text-3xl font-bold text-primary mt-2 font-serif">Đối Tác Nói Về FATIC</h2>
+                    <!-- TESTIMONIALS SLIDER (Redesigned: Dark Premium) -->
+                    <div class="mb-20 relative rounded-[3rem] overflow-hidden">
+                        <!-- Background -->
+                        <div class="absolute inset-0 bg-primary">
+                            <div class="absolute inset-0 bg-[url('images/hero_bg.png')] opacity-20 bg-cover bg-center mix-blend-overlay"></div>
+                            <div class="absolute -top-24 -right-24 w-96 h-96 bg-secondary/30 rounded-full blur-3xl"></div>
+                            <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-blue-500/20 rounded-full blur-3xl"></div>
                         </div>
-                       <div id="home-testimonials" class="testimonial-slider max-w-4xl mx-auto"></div>
+
+                        <div class="relative z-10 py-20 px-6">
+                            <div class="text-center mb-16">
+                                <span class="text-secondary font-bold tracking-[0.2em] uppercase text-xs border border-secondary/30 px-4 py-2 rounded-full backdrop-blur-sm">Cảm Nhận Khách Hàng</span>
+                                <h2 class="text-4xl md:text-5xl font-bold text-white mt-6 font-serif">Niềm Tin Của Đối Tác</h2>
+                            </div>
+                            <div id="home-testimonials" class="testimonial-slider max-w-5xl mx-auto"></div>
+                        </div>
                     </div>
 
-                    <!-- PARTNERS SLIDER (Moved) -->
-                     <div class="mb-10">
-                        <h4 class="text-center text-gray-400 font-bold uppercase tracking-widest mb-8 text-sm">Đối Tác Đồng Hành</h4>
-                        <div id="home-partners" class="partner-slider">
-                             <div class="px-4"><div class="text-2xl font-black text-gray-300 text-center uppercase">VinHomes</div></div>
-                             <div class="px-4"><div class="text-2xl font-black text-gray-300 text-center uppercase">NovaLand</div></div>
-                             <div class="px-4"><div class="text-2xl font-black text-gray-300 text-center uppercase">Sun Group</div></div>
-                             <div class="px-4"><div class="text-2xl font-black text-gray-300 text-center uppercase">Ecopark</div></div>
-                             <div class="px-4"><div class="text-2xl font-black text-gray-300 text-center uppercase">Bitexco</div></div>
-                             <div class="px-4"><div class="text-2xl font-black text-gray-300 text-center uppercase">Masterise</div></div>
-                             <div class="px-4"><div class="text-2xl font-black text-gray-300 text-center uppercase">DatXanh</div></div>
+                    <!-- PARTNERS SLIDER (Redesigned: Infinite Scroll) -->
+                     <div class="mb-20">
+                        <div class="text-center mb-10">
+                            <h4 class="text-gray-400 font-bold uppercase tracking-widest text-sm">Đối Tác Chiến Lược</h4>
+                        </div>
+                        <div class="relative">
+                            <!-- Gradient Masks for Fade Effect -->
+                            <div class="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
+                            <div class="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
+                            
+                            <!-- Slider Container -->
+                            <div id="home-partners" class="partner-slider -mx-4 py-4"></div>
                         </div>
                     </div>
                 </div>

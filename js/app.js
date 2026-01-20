@@ -135,28 +135,50 @@ function renderHomeContent() {
     // Services Widget (Slick Slider format)
     const sContainer = document.getElementById('home-services');
     if (sContainer) {
-        // Destroy slick if exists to allow re-render
         if($(sContainer).hasClass('slick-initialized')) {
             $(sContainer).slick('unslick');
         }
         sContainer.innerHTML = "";
         faticData.services.forEach(item => {
              sContainer.innerHTML += `
-                <div class="px-4 py-2 h-full">
-                    <div class="bg-gray-50 rounded-xl p-8 hover:shadow-xl transition-all border border-gray-100 flex flex-col items-center text-center cursor-pointer group h-full bg-white relative top-0 hover:-top-2 duration-300" onclick="switchPage('detail', {type: 'service', id: '${item.id}'})">
-                        <div class="w-20 h-20 bg-primary/5 rounded-full flex items-center justify-center text-secondary text-3xl mb-6 shadow-sm group-hover:bg-secondary group-hover:text-white transition-colors">
-                            <i class="${item.icon}"></i>
+                <div class="px-4 py-6 h-full">
+                    <div class="relative group rounded-3xl overflow-hidden shadow-lg h-[450px] cursor-pointer transition-all duration-500 hover:shadow-2xl" onclick="switchPage('detail', {type: 'service', id: '${item.id}'})">
+                        <!-- Background Image -->
+                        <div class="absolute inset-0">
+                            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
                         </div>
-                        <h3 class="text-xl font-bold text-primary mb-3 group-hover:text-secondary transition-colors font-serif">${item.title}</h3>
-                        <p class="text-gray-500 text-sm line-clamp-3 mb-4">${item.shortDesc}</p>
-                        <span class="mt-auto text-secondary text-xs font-bold uppercase tracking-wider group-hover:underline">Chi tiết <i class="fas fa-arrow-right"></i></span>
+                        
+                        <!-- Overlay Gradient -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-transparent opacity-90 group-hover:opacity-95 transition-opacity duration-300"></div>
+                        
+                        <!-- Content -->
+                        <div class="absolute inset-0 p-8 flex flex-col justify-end">
+                            <!-- Icon -->
+                            <div class="w-16 h-16 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center text-white text-3xl mb-6 shadow-inner border border-white/20 transform group-hover:-translate-y-2 transition-transform duration-300">
+                                <i class="${item.icon}"></i>
+                            </div>
+                            
+                            <h3 class="text-2xl font-bold text-white mb-3 font-serif leading-tight group-hover:text-secondary transition-colors">${item.title}</h3>
+                            
+                            <div class="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 overflow-hidden transition-all duration-500 ease-in-out">
+                                <p class="text-gray-200 text-sm mb-6 leading-relaxed border-l-2 border-secondary pl-4">${item.shortDesc}</p>
+                                <button class="px-6 py-2 bg-secondary text-white text-xs font-bold uppercase tracking-wider rounded-full hover:bg-white hover:text-primary transition-all">
+                                    Xem Chi Tiết <i class="fas fa-arrow-right ml-1"></i>
+                                </button>
+                            </div>
+                            
+                            <!-- Arrow hint when collapsed -->
+                            <div class="group-hover:opacity-0 transition-opacity duration-300 absolute bottom-8 right-8">
+                                <i class="fas fa-arrow-up text-white/50 text-xl animate-bounce"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
              `;
         });
     }
     
-    // Projects Widget (Slick Slider format)
+    // Projects Widget (Slick Slider format) - Keeping existing premium logic but ensuring it matches style if needed (Looks good already)
     const pContainer = document.getElementById('home-projects');
     if (pContainer) {
          if($(pContainer).hasClass('slick-initialized')) {
@@ -190,31 +212,31 @@ function renderHomeContent() {
         tContainer.innerHTML = "";
         faticData.testimonials.forEach(item => {
             tContainer.innerHTML += `
-                <div class="px-4 py-4"> 
-                    <div class="bg-white rounded-xl shadow-lg border-t-2 border-secondary p-6 md:p-8 text-center relative mx-auto max-w-2xl transform transition-transform hover:-translate-y-1">
-                        <!-- Compact Quote Icon -->
-                        <div class="absolute top-2 right-4 text-6xl text-gray-100 font-serif opacity-50 z-0 leading-none">”</div>
+                <div class="px-4 py-8"> 
+                    <div class="bg-white rounded-[2rem] shadow-xl p-10 md:p-12 relative mx-auto max-w-4xl transition-all hover:shadow-2xl border border-gray-50/50">
                         
-                        <div class="relative z-10 flex flex-col items-center">
-                            <!-- Compact Avatar -->
-                            <div class="w-16 h-16 mb-4 p-0.5 rounded-full bg-gradient-to-r from-secondary to-primary shadow-md">
-                                <img src="${item.avatar}" class="w-full h-full rounded-full object-cover border-2 border-white">
+                        <div class="grid md:grid-cols-[200px,1fr] gap-8 items-center">
+                            <!-- Avatar Column -->
+                            <div class="flex flex-col items-center">
+                                <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-br from-secondary via-[#f3dba8] to-primary shadow-lg mb-4">
+                                     <img src="${item.avatar}" class="w-full h-full rounded-full object-cover border-4 border-white">
+                                </div>
+                                <div class="flex gap-1 text-secondary text-xs">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
                             </div>
                             
-                            <!-- Rating -->
-                            <div class="flex justify-center gap-0.5 text-yellow-400 mb-4 text-xs">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-
-                            <!-- Content -->
-                            <p class="text-gray-600 italic mb-6 text-base leading-relaxed font-light line-clamp-4">
-                                "${item.content}"
-                            </p>
-                            
-                            <!-- Author Info -->
-                            <div class="border-t border-gray-100 pt-4 w-full">
-                                <h4 class="font-bold text-lg text-primary font-serif">${item.name}</h4>
-                                <p class="text-secondary text-xs uppercase tracking-widest font-bold mt-0.5">${item.role}</p>
+                            <!-- Content Column -->
+                            <div class="relative">
+                                <i class="fas fa-quote-left text-6xl text-gray-100 absolute -top-8 -left-4 -z-10"></i>
+                                <p class="text-gray-600 italic text-lg leading-relaxed mb-6 font-light relative z-10">
+                                    "${item.content}"
+                                </p>
+                                
+                                <div>
+                                    <h4 class="font-bold text-xl text-primary font-serif">${item.name}</h4>
+                                    <p class="text-secondary text-sm font-bold uppercase tracking-wider">${item.role}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -794,14 +816,20 @@ window.switchHistory = function(year) {
     }
 };
 
-function initScrollAnimations() { 
+function initScrollAnimations() {
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             // SCROLL DOWN: Reveal
             if (entry.isIntersecting) {
-                entry.target.classList.add('active', 'animate__animated', 'animate__fadeInUp');
-                entry.target.classList.remove('invisible', 'opacity-0'); 
-            } 
+                entry.target.classList.add('active');
+                entry.target.classList.remove('opacity-0', 'translate-y-4'); // Ensure simple fade ins work too if manual classes used
+
+                // Specific Check for Process Line
+                if (entry.target.id === 'process-line' || entry.target.querySelector('#process-line')) {
+                    const line = entry.target.id === 'process-line' ? entry.target : entry.target.querySelector('#process-line');
+                    if(line) setTimeout(() => { line.style.width = '100%'; }, 500);
+                }
+            }
             // SCROLL UP/OUT: Hide (Reset animation)
             else {
                 // Remove active class to hide element
