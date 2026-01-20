@@ -203,7 +203,7 @@ function renderHomeContent() {
          });
     }
 
-    // Testimonials Widget
+    // Testimonials Widget (Dark Theme)
     const tContainer = document.getElementById('home-testimonials');
     if(tContainer && faticData.testimonials) {
          if($(tContainer).hasClass('slick-initialized')) {
@@ -213,35 +213,75 @@ function renderHomeContent() {
         faticData.testimonials.forEach(item => {
             tContainer.innerHTML += `
                 <div class="px-4 py-8"> 
-                    <div class="bg-white rounded-[2rem] shadow-xl p-10 md:p-12 relative mx-auto max-w-4xl transition-all hover:shadow-2xl border border-gray-50/50">
+                    <div class="bg-white/10 backdrop-blur-md rounded-[2rem] p-10 md:p-12 relative mx-auto max-w-4xl border border-white/20 hover:bg-white/15 transition-all duration-300 group">
                         
-                        <div class="grid md:grid-cols-[200px,1fr] gap-8 items-center">
+                        <!-- Decorative Quote -->
+                        <div class="absolute -top-6 -left-6 w-16 h-16 bg-gradient-to-br from-secondary to-yellow-600 rounded-full flex items-center justify-center text-white text-3xl shadow-lg transform -rotate-12 group-hover:rotate-0 transition-transform duration-500">
+                             <i class="fas fa-quote-right"></i>
+                        </div>
+
+                        <div class="grid md:grid-cols-[180px,1fr] gap-8 items-center">
                             <!-- Avatar Column -->
-                            <div class="flex flex-col items-center">
-                                <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-br from-secondary via-[#f3dba8] to-primary shadow-lg mb-4">
-                                     <img src="${item.avatar}" class="w-full h-full rounded-full object-cover border-4 border-white">
+                            <div class="flex flex-col items-center text-center">
+                                <div class="w-36 h-36 rounded-full p-1 bg-gradient-to-br from-secondary via-yellow-200 to-primary shadow-2xl mb-4 relative">
+                                     <img src="${item.avatar}" class="w-full h-full rounded-full object-cover border-4 border-gray-900 group-hover:scale-105 transition-transform duration-500">
+                                     <div class="absolute bottom-2 right-2 w-8 h-8 bg-green-500 border-4 border-gray-900 rounded-full"></div>
                                 </div>
-                                <div class="flex gap-1 text-secondary text-xs">
+                                <div class="flex gap-1 text-yellow-500 text-xs">
                                     <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
                                 </div>
                             </div>
                             
                             <!-- Content Column -->
                             <div class="relative">
-                                <i class="fas fa-quote-left text-6xl text-gray-100 absolute -top-8 -left-4 -z-10"></i>
-                                <p class="text-gray-600 italic text-lg leading-relaxed mb-6 font-light relative z-10">
+                                <p class="text-gray-200 italic text-lg leading-loose mb-6 font-light relative z-10">
                                     "${item.content}"
                                 </p>
                                 
-                                <div>
-                                    <h4 class="font-bold text-xl text-primary font-serif">${item.name}</h4>
-                                    <p class="text-secondary text-sm font-bold uppercase tracking-wider">${item.role}</p>
+                                <div class="flex items-center gap-4">
+                                    <div class="h-12 w-1 bg-secondary rounded-full"></div>
+                                    <div>
+                                        <h4 class="font-bold text-2xl text-white font-serif tracking-wide">${item.name}</h4>
+                                        <p class="text-secondary text-sm font-bold uppercase tracking-widest mt-1 opacity-80">${item.role}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             `;
+        });
+    }
+
+    // Partners Widget (Infinite Scroll Logos)
+    const ptContainer = document.getElementById('home-partners');
+    if (ptContainer) {
+        if($(ptContainer).hasClass('slick-initialized')) {
+            $(ptContainer).slick('unslick');
+        }
+        ptContainer.innerHTML = "";
+        
+        // Mock Partners Data
+        const partnersData = [
+            { name: "VinHomes", color: "text-blue-600" },
+            { name: "NovaLand", color: "text-green-600" },
+            { name: "Sun Group", color: "text-yellow-600" },
+            { name: "Ecopark", color: "text-green-500" },
+            { name: "Bitexco", color: "text-blue-800" },
+            { name: "Masterise", color: "text-red-600" },
+            { name: "DatXanh", color: "text-blue-500" },
+            { name: "Sovico", color: "text-red-500" }
+        ];
+
+        partnersData.forEach(p => {
+             ptContainer.innerHTML += `
+                <div class="px-6 py-4">
+                    <div class="h-24 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer group">
+                        <!-- Simulated Logo Text -->
+                        <span class="text-2xl font-black ${p.color} uppercase tracking-tight group-hover:tracking-normal transition-all">${p.name}</span>
+                    </div>
+                </div>
+             `;
         });
     }
 

@@ -211,3 +211,24 @@
 .smooth-transition {
     transition: all 0.3s ease-in-out;
 }
+
+/* Infinite Shimmer/Flow Animation */
+@keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+    animation: shimmer 2.5s infinite linear;
+}
+
+/* Pulsing Border Effect */
+@keyframes borderPulse {
+    0% { box-shadow: 0 0 0 0 rgba(209, 166, 98, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(209, 166, 98, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(209, 166, 98, 0); }
+}
+
+.animate-border-pulse {
+    animation: borderPulse 2s infinite;
+}
