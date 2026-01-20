@@ -160,7 +160,8 @@ function renderHomeContent() {
                             
                             <h3 class="text-2xl font-bold text-white mb-3 font-serif leading-tight group-hover:text-secondary transition-colors">${item.title}</h3>
                             
-                            <div class="h-0 opacity-0 group-hover:h-auto group-hover:opacity-100 overflow-hidden transition-all duration-500 ease-in-out">
+                            <!-- Improved Hover Animation using Max-Height -->
+                            <div class="max-h-0 opacity-0 group-hover:max-h-64 group-hover:opacity-100 overflow-hidden transition-all duration-700 ease-in-out">
                                 <p class="text-gray-200 text-sm mb-6 leading-relaxed border-l-2 border-secondary pl-4">${item.shortDesc}</p>
                                 <button class="px-6 py-2 bg-secondary text-white text-xs font-bold uppercase tracking-wider rounded-full hover:bg-white hover:text-primary transition-all">
                                     Xem Chi Tiết <i class="fas fa-arrow-right ml-1"></i>
@@ -253,7 +254,7 @@ function renderHomeContent() {
         });
     }
 
-    // Partners Widget (Infinite Scroll Logos)
+    // Partners Widget (Stratigic Partners - Enhanced Color & Logos)
     const ptContainer = document.getElementById('home-partners');
     if (ptContainer) {
         if($(ptContainer).hasClass('slick-initialized')) {
@@ -261,24 +262,36 @@ function renderHomeContent() {
         }
         ptContainer.innerHTML = "";
         
-        // Mock Partners Data
+        // Mock Partners Data with Brand Colors & Icons
         const partnersData = [
-            { name: "VinHomes", color: "text-blue-600" },
-            { name: "NovaLand", color: "text-green-600" },
-            { name: "Sun Group", color: "text-yellow-600" },
-            { name: "Ecopark", color: "text-green-500" },
-            { name: "Bitexco", color: "text-blue-800" },
-            { name: "Masterise", color: "text-red-600" },
-            { name: "DatXanh", color: "text-blue-500" },
-            { name: "Sovico", color: "text-red-500" }
+            { name: "VinHomes", color: "text-[#005BA6]", border: "border-[#005BA6]", icon: "fas fa-home" },
+            { name: "NovaLand", color: "text-[#86BD2D]", border: "border-[#86BD2D]", icon: "fas fa-leaf" },
+            { name: "Sun Group", color: "text-[#D4A017]", border: "border-[#D4A017]", icon: "fas fa-sun" },
+            { name: "Ecopark", color: "text-[#009639]", border: "border-[#009639]", icon: "fas fa-tree" },
+            { name: "Bitexco", color: "text-[#002D72]", border: "border-[#002D72]", icon: "fas fa-building" },
+            { name: "Masterise", color: "text-[#E31D93]", border: "border-[#E31D93]", icon: "fas fa-gem" },
+            { name: "DatXanh", color: "text-[#0072CE]", border: "border-[#0072CE]", icon: "fas fa-city" },
+            { name: "Sovico", color: "text-[#ED1C24]", border: "border-[#ED1C24]", icon: "fas fa-plane" }
         ];
 
         partnersData.forEach(p => {
              ptContainer.innerHTML += `
                 <div class="px-6 py-4">
-                    <div class="h-24 bg-white rounded-xl shadow-sm border border-gray-100 flex items-center justify-center grayscale opacity-60 hover:grayscale-0 hover:opacity-100 hover:scale-105 hover:shadow-lg transition-all duration-300 cursor-pointer group">
-                        <!-- Simulated Logo Text -->
-                        <span class="text-2xl font-black ${p.color} uppercase tracking-tight group-hover:tracking-normal transition-all">${p.name}</span>
+                    <div class="h-28 bg-white rounded-xl shadow-sm border-2 border-gray-100 flex items-center justify-center p-4 hover:border-transparent hover:shadow-xl transition-all duration-300 cursor-pointer group relative overflow-hidden">
+                        
+                        <!-- Hover Gradient Background -->
+                        <div class="absolute inset-0 bg-gradient-to-br from-gray-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        
+                        <!-- Content -->
+                        <div class="relative z-10 flex flex-col items-center gap-2 group-hover:transform group-hover:scale-110 transition-transform duration-300">
+                             <div class="text-4xl ${p.color} opacity-80 group-hover:opacity-100">
+                                <i class="${p.icon}"></i>
+                             </div>
+                             <span class="text-lg font-black ${p.color} uppercase tracking-tight group-hover:tracking-normal transition-all opacity-80 group-hover:opacity-100">${p.name}</span>
+                        </div>
+                        
+                        <!-- Bottom Bar -->
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-current ${p.color} transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
                     </div>
                 </div>
              `;
