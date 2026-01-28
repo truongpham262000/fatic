@@ -10,34 +10,13 @@ const faticData = {
                 { name: "Tất Cả Dịch Vụ", link: "services.html" },
                 { name: "Quản Lý Tòa Nhà", link: "services.html?category=QLTN" },
                 { name: "Bảo Trì Kỹ Thuật", link: "services.html?category=BTKT" },
-                { name: "Tư Vấn & Setup", link: "services.html?category=TV" },
-                { name: "Công Nghệ & Smarthome", link: "services.html?category=CN" },
-                { name: "✨ Vệ Sinh & Cảnh Quan", link: "services.html?category=QLTN" }, // Highlighted new
-                { name: "✨ Smart Parking", link: "services.html?category=CN" }        // Highlighted new
+                { name: "Tư Vấn & Setup", link: "services.html?category=TV" }
             ]
         },
         { 
             name: "Dự Án", 
             link: "projects.html", 
-            type: "dropdown",
-            items: [
-                { name: "Tất Cả Dự Án", link: "projects.html" },
-                { name: "Chung Cư Cao Cấp", link: "projects.html?category=Apartment" },
-                { name: "Khu Công Nghiệp", link: "projects.html?category=Industrial" },
-                { name: "Văn Phòng & TM", link: "projects.html?category=Office" },
-                { name: "Đô Thị Thông Minh", link: "projects.html?category=SmartCity" }
-            ]
-        },
-        { 
-            name: "Tin Tức", 
-            link: "news.html", 
-            type: "dropdown",
-            items: [
-                 { name: "Tất Cả Tin Tức", link: "news.html" },
-                 { name: "Tin Công Ty", link: "news.html?category=Tin Công Ty" }, // Matches category in data
-                 { name: "Sự Kiện", link: "news.html?category=Sự Kiện" },
-                 { name: "Hoạt Động & Phong Trào", link: "news.html?category=Hoạt Động" }
-            ]
+            type: "link" 
         },
         { name: "Liên Hệ", link: "contact.html", type: "button" }
     ],
